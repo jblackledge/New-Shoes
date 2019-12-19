@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">New Shoes</string>
+    <string name="new_shoes">New Shoes</string>
+    <string name="add_shoe">New Shoe</string>
+    <string name="add_new_shoe_text">Add New Shoe</string>
+    <string name="enter_shoe_name">Enter shoe name:</string>
+    <string name="enter_desired_distance_text">Enter desired distance in miles:</string>
+    <string name="add_shoe_button_text">Add Shoe</string>
+</resources>
