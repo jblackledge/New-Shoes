@@ -9,6 +9,8 @@ public class Shoe {
 
     private Double mileCount;
 
+    private Double countChocula;
+
     public Shoe(String shoeName, Double distance) {
         this.shoeName = shoeName;
         this.desiredDistanceInMiles = distance;
