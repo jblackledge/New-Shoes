@@ -30,7 +30,7 @@ public class AddShoeActivity extends AppCompatActivity {
         TextView shoeDistanceText = (TextView)(findViewById(R.id.desired_distance_text_field));
         CharSequence shoeDistanceSequence = shoeDistanceText.getText();
         String shoeDistanceString = shoeDistanceSequence.toString();
-        Integer shoeDistance = Integer.valueOf(shoeDistanceString);
+        Double shoeDistance = Double.valueOf(shoeDistanceString);
 
         myShoe = new Shoe(shoeName, shoeDistance);
         shoeList.add(myShoe);
