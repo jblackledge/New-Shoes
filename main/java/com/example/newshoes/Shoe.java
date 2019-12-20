@@ -1,8 +1,9 @@
 package com.example.newshoes;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Shoe {
+public class Shoe implements Serializable {
     private String shoeName;
 
     private Double desiredDistanceInMiles;
