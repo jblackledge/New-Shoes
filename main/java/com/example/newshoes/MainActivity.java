@@ -11,16 +11,16 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements Serializable {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         showShoeList();
-        //updateShoeListView();
     }
 
     public void newShoe(View view) {
@@ -40,36 +40,15 @@ public class MainActivity extends AppCompatActivity {
         spinner.setAdapter(spinnerArrayListAdapter);
     }
 
-//    public void testShoeList(View view) {
-//        ListView shoeListView = findViewById(R.id.shoe_list_box);
-//
-//        ArrayList<Shoe> myList = AddShoeActivity.getShoeList();
-//        String myString = "";
-//
-//        for(int i = 0; i < myList.size(); ++i)
-//        {
-//            myString += ("Shoe Name: " + myList.get(i).getName() + " " + "Shoe Distance: " +
-//                    myList.get(i).getDesiredDistanceInMiles() + "\n");
-//        }
-//        CharSequence mySequ = myString;
-//        //shoeListView.setText(mySequ);
-//    }
+    public void startRun(View view) {
+        Spinner spinner = findViewById(R.id.choose_shoe_spinner);
+        Shoe chosenShoe = (Shoe)spinner.getSelectedItem();
+//        chosenShoe = (Shoe)chosenShoe;
 
-//    public void updateShoeListView() {
-//        ListView shoeListView = findViewById(R.id.shoe_list_box);
-//
-//        ArrayList<Shoe> myList = AddShoeActivity.getShoeList();
-//        String myString = "";
-//
-//        for(int i = 0; i < myList.size(); ++i)
-//        {
-//            myString += ("Shoe Name: " + myList.get(i).getName() + " " + "Shoe Distance: " +
-//                    myList.get(i).getDesiredDistanceInMiles() + "\n");
-//        }
-//        CharSequence mySequ = myString;
-//
-//        ArrayAdapter<Shoe> adapter = new ArrayAdapter<>(this, R.layout.activity_main, myList);
-//        shoeListView.setAdapter(adapter);
-//    }
+        //Shoe shoe = new Shoe("Nike", 500.0);
+        Intent intent = new Intent(this, StartRun.class);
+        intent.putExtra("Shoe", chosenShoe);
+        startActivity(intent);
+    }
 
 }
