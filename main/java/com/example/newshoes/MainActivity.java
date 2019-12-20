@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -18,12 +19,25 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        showShoeList();
         //updateShoeListView();
     }
 
     public void newShoe(View view) {
         Intent intent = new Intent(this, AddShoeActivity.class);
         startActivity(intent);
+    }
+
+    public void showShoeList() {
+        Spinner spinner = findViewById(R.id.choose_shoe_spinner);
+        ArrayList<Shoe> shoeList = AddShoeActivity.getShoeList();
+        ArrayAdapter<Shoe> spinnerArrayListAdapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_item, shoeList);
+
+        spinnerArrayListAdapter.setDropDownViewResource
+                (android.R.layout.simple_spinner_dropdown_item);
+
+        spinner.setAdapter(spinnerArrayListAdapter);
     }
 
 //    public void testShoeList(View view) {
