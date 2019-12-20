@@ -6,4 +6,28 @@
     android:layout_height="match_parent"
     tools:context=".StartRun">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/start_run_welcome_text"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toLeftOf="parent"
+        app:layout_constraintLeft_toRightOf="parent"
+        android:textSize="52dp"
+        android:textColor="@color/titleColorTest"
+        android:textStyle="bold"
+        android:text="@string/start_run_welcome_string"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/test_passed_shoe"
+        app:layout_constraintTop_toBottomOf="@id/start_run_welcome_text"
+        app:layout_constraintLeft_toRightOf="parent"
+        app:layout_constraintRight_toLeftOf="parent"
+        android:layout_marginTop="12dp"
+        android:textSize="20dp"
+        android:textColor="@color/titleColorTest"
+        android:text=""/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
