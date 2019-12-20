@@ -9,4 +9,5 @@
     <string name="choose_shoe_button">Choose Shoe</string>
     <string name="choose_shoe_text">Choose Shoe</string>
     <string name="choose_shoe_spinner">Choose Shoe</string>
+    <string name="start_run_button">Start Run</string>
 </resources>
