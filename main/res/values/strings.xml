@@ -10,4 +10,5 @@
     <string name="choose_shoe_text">Choose Shoe</string>
     <string name="choose_shoe_spinner">Choose Shoe</string>
     <string name="start_run_button">Start Run</string>
+    <string name="start_run_welcome_string">Start Run</string>
 </resources>
