@@ -68,18 +68,5 @@
         app:layout_constraintTop_toBottomOf="@id/welcome_text"/>
 
 
-    <!--    <ListView-->
-<!--        android:id="@+id/shoe_list_box"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="30dp"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintLeft_toLeftOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/new_shoe_button"-->
-<!--        android:textSize="30dp"-->
-<!--        android:height="250dp"/>-->
-
-
-
-
+    
 </androidx.constraintlayout.widget.ConstraintLayout>
