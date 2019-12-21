@@ -54,6 +54,7 @@
         android:textSize="52dp"
         android:textStyle="bold"
         android:textColor="@color/backgroundColor"
-        android:text=""/>
+        android:text=""
+        android:onClick="trackRun"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
