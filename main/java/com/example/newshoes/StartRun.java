@@ -13,7 +13,6 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 public class StartRun extends AppCompatActivity {
-    TextView trackedMiles = findViewById(R.id.mile_count_text);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +25,7 @@ public class StartRun extends AppCompatActivity {
         TextView testingShoe = findViewById(R.id.test_passed_shoe);
         testingShoe.setText(shoe.toString());
 
-
+        TextView trackedMiles = findViewById(R.id.mile_count_text);
         trackedMiles.setText("0.00");
     }
 
@@ -34,6 +33,7 @@ public class StartRun extends AppCompatActivity {
         final Double VALUE_OF_MILE_IN_METERS = 0.000621371;
         Switch trackRunSwitch = findViewById(R.id.track_run_switch);
         Double totalMilesTraveled = 0.0;
+        TextView trackedMiles = findViewById(R.id.mile_count_text);
 
         Criteria criteria = new Criteria();
         criteria.setAccuracy(Criteria.ACCURACY_FINE);
