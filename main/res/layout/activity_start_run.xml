@@ -30,4 +30,16 @@
         android:textColor="@color/titleColorTest"
         android:text=""/>
 
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/track_run_switch"
+        app:layout_constraintTop_toBottomOf="@id/test_passed_shoe"
+        app:layout_constraintRight_toLeftOf="parent"
+        app:layout_constraintLeft_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@color/titleColorTest"
+        android:switchMinWidth="100dp"
+        android:minHeight="52dp"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
