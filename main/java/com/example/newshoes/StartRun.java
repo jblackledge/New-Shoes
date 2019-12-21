@@ -8,6 +8,7 @@ import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -29,7 +30,7 @@ public class StartRun extends AppCompatActivity {
         trackedMiles.setText("0.00");
     }
 
-    public void trackRun() {
+    public void trackRun(View view) {
         final Double VALUE_OF_MILE_IN_METERS = 0.000621371;
         Switch trackRunSwitch = findViewById(R.id.track_run_switch);
         Double totalMilesTraveled = 0.0;
