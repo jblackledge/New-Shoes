@@ -26,7 +26,9 @@ public class StartRun extends AppCompatActivity {
     }
 
     public void trackRun() {
+        final Double VALUE_OF_MILE_IN_METERS = 0.000621371;
         Switch trackRunSwitch = findViewById(R.id.track_run_switch);
+        Double totalMilesTraveled = 0.0;
 
         Criteria criteria = new Criteria();
         criteria.setAccuracy(Criteria.ACCURACY_FINE);
@@ -36,12 +38,28 @@ public class StartRun extends AppCompatActivity {
         String providerName = locationManager.getBestProvider(criteria, true);
 
         Location startLocation = new Location(providerName);
-        Double latitude = startLocation.getLatitude();
-        startLocation.setLatitude(latitude);
+        Double startLatitude = startLocation.getLatitude();
+        startLocation.setLatitude(startLatitude);
 
-        Double longitude = startLocation.getLongitude();
-        startLocation.setLongitude(longitude);
+        Double startLongitude = startLocation.getLongitude();
+        startLocation.setLongitude(startLongitude);
         startLocation.set(startLocation);
+
+        while(trackRunSwitch.isChecked())
+        {
+            Location currentLocation = new Location(providerName);
+            Double currentLatitude = currentLocation.getLatitude();
+            currentLocation.setLatitude(currentLatitude);
+
+            Double currentLongitude = currentLocation.getLongitude();
+            currentLocation.setLongitude(currentLongitude);
+            currentLocation.set(currentLocation);
+
+            Float metersBetween = currentLocation.distanceTo(startLocation);
+            Double metersBetweenDouble = metersBetween.doubleValue();
+            Double milesBetween = metersBetweenDouble * VALUE_OF_MILE_IN_METERS;
+            totalMilesTraveled += milesBetween;
+        }
 
 
     }
