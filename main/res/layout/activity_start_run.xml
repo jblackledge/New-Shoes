@@ -42,4 +42,18 @@
         android:switchMinWidth="100dp"
         android:minHeight="52dp"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/mile_count_text"
+        app:layout_constraintTop_toBottomOf="@id/test_passed_shoe"
+        app:layout_constraintBottom_toTopOf="@id/track_run_switch"
+        app:layout_constraintRight_toLeftOf="parent"
+        app:layout_constraintLeft_toRightOf="parent"
+        android:background="@color/titleColorTest"
+        android:textSize="52dp"
+        android:textStyle="bold"
+        android:textColor="@color/backgroundColor"
+        android:text=""/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
