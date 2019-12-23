@@ -22,6 +22,9 @@ import android.widget.TextView;
 
 public class StartRun extends AppCompatActivity implements LocationListener {
 
+//    private TextView currentLocationText = findViewById(R.id.current_location_test);
+//
+//    private TextView startLocationText = findViewById(R.id.start_location_test);
 
 
     @Override
@@ -77,19 +80,30 @@ public class StartRun extends AppCompatActivity implements LocationListener {
         //END OF TEST CODE REMOVE LATER
         TextView currentLocationText = findViewById(R.id.current_location_test);
 
-        while(trackRunSwitch.isChecked())
-        {
-            Location currentLocation = locationManager.getLastKnownLocation(provider);
-            currentLocationText.setText(currentLocation.toString());
+        Float metersBetween = null;
+        Double metersBetweenDouble = null;
+        Double milesBetween = null;
 
-            Float metersBetween = currentLocation.distanceTo(startLocation);
-            Double metersBetweenDouble = metersBetween.doubleValue();
-            Double milesBetween = metersBetweenDouble * VALUE_OF_MILE_IN_METERS;
-            totalMilesTraveled += milesBetween;
+        Location currentLocation = locationManager.getLastKnownLocation(provider);
+        currentLocationText.setText(currentLocation.toString());
 
-            trackedMiles.setText(totalMilesTraveled.toString());
-            trackRunSwitch.isChecked();
-        }
+        locationManager.requestLocationUpdates(provider, 100, 2, this);
+//        while(trackRunSwitch.isChecked())
+//        {
+////            Float metersBetween = currentLocation.distanceTo(startLocation);
+////            Double metersBetweenDouble = metersBetween.doubleValue();
+////            Double milesBetween = metersBetweenDouble * VALUE_OF_MILE_IN_METERS;
+////            totalMilesTraveled += milesBetween;
+//
+//            metersBetween = currentLocation.distanceTo(startLocation);
+//            metersBetweenDouble = metersBetween.doubleValue();
+//            milesBetween = metersBetweenDouble * VALUE_OF_MILE_IN_METERS;
+//            totalMilesTraveled += milesBetween;
+//
+//            trackedMiles.setText(totalMilesTraveled.toString());
+//            currentLocation = locationManager.getLastKnownLocation(provider);
+//            trackRunSwitch.isChecked();
+//        }
     }
 
     public boolean checkLocationPermission() {
@@ -171,8 +185,17 @@ public class StartRun extends AppCompatActivity implements LocationListener {
     }
 
     @Override
-    public void onLocationChanged(Location location) {
-
+    public void onLocationChanged(Location currentLocation) {
+//        TextView currentLocationText = findViewById(R.id.current_location_test);
+//        Criteria criteria = new Criteria();
+//        criteria.setAccuracy(Criteria.ACCURACY_FINE);
+//
+//        LocationManager locationManager =
+//                (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+//
+//        String provider = locationManager.getBestProvider(criteria, true);
+//
+//        currentLocation = locationManager.getLastKnownLocation(provider);
     }
 
     @Override
