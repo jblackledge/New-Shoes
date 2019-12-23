@@ -49,7 +49,11 @@ public class StartRun extends AppCompatActivity {
         Double startLongitude = startLocation.getLongitude();
         startLocation.setLongitude(startLongitude);
         startLocation.set(startLocation);
-        
+
+        //TEST REMOVE LATER
+        TextView startLocationText = findViewById(R.id.start_location_test);
+        startLocationText.setText(startLocation.toString());
+
         while(trackRunSwitch.isChecked())
         {
             Location currentLocation = new Location(providerName);
