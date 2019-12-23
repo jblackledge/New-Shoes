@@ -43,7 +43,6 @@ public class StartRun extends AppCompatActivity implements LocationListener {
     public void trackRun(View view) {
         final Double VALUE_OF_MILE_IN_METERS = 0.000621371;
         Switch trackRunSwitch = findViewById(R.id.track_run_switch);
-        //Button trackRunSwitch = findViewById(R.id.track_run_switch);    //TEST ONLY DELEETE LATER
         Double totalMilesTraveled = 0.0;
         TextView trackedMiles = findViewById(R.id.mile_count_text);
 
@@ -67,28 +66,13 @@ public class StartRun extends AppCompatActivity implements LocationListener {
             trackedMiles.setText("Lol nope");
             return;
         }
-//        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
-//                2000, 1, this);
 
-          String provider = locationManager.getBestProvider(criteria, true);
-
-//        Location startLocation = new Location(providerName);
-//        Double startLatitude = startLocation.getLatitude();
-//        startLocation.setLatitude(startLatitude);
-//
-//        Double startLongitude = startLocation.getLongitude();
-//        startLocation.setLongitude(startLongitude);
-//        startLocation.set(startLocation);
+        String provider = locationManager.getBestProvider(criteria, true);
 
         Location startLocation = locationManager.getLastKnownLocation(provider);
 
         //TEST REMOVE LATER
         TextView startLocationText = findViewById(R.id.start_location_test);
-//        Float accFloat = startLocation.getAccuracy();
-//        Double testLongitude = startLocation.getLongitude();
-//        Double testLatitude = startLocation.getLatitude();
-//        startLocationText.setText("Longitude: " + testLongitude.toString() + "\n"
-//                    + " Latitdude: " + testLatitude.toString());
         startLocationText.setText(startLocation.toString());
         //END OF TEST CODE REMOVE LATER
         TextView currentLocationText = findViewById(R.id.current_location_test);
@@ -106,28 +90,7 @@ public class StartRun extends AppCompatActivity implements LocationListener {
             trackedMiles.setText(totalMilesTraveled.toString());
             trackRunSwitch.isChecked();
         }
-        //Button stopRunButton = findViewById(R.id.test_stop_run_button);
-
-//        while(!stopRunButton.isPressed())
-//        {
-//            Location currentLocation = new Location(providerName);
-//            Double currentLatitude = currentLocation.getLatitude();
-//            currentLocation.setLatitude(currentLatitude);
-//
-//            Double currentLongitude = currentLocation.getLongitude();
-//            currentLocation.setLongitude(currentLongitude);
-//            currentLocation.set(currentLocation);
-//
-//            Float metersBetween = currentLocation.distanceTo(startLocation);
-//            Double metersBetweenDouble = metersBetween.doubleValue();
-//            Double milesBetween = metersBetweenDouble * VALUE_OF_MILE_IN_METERS;
-//            totalMilesTraveled += milesBetween;
-//
-//            trackedMiles.setText(totalMilesTraveled.toString());
-//            stopRunButton.isPressed();
-//        }
     }
-
 
     public boolean checkLocationPermission() {
         final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
