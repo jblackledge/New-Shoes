@@ -49,7 +49,7 @@ public class StartRun extends AppCompatActivity {
         Double startLongitude = startLocation.getLongitude();
         startLocation.setLongitude(startLongitude);
         startLocation.set(startLocation);
-
+        
         while(trackRunSwitch.isChecked())
         {
             Location currentLocation = new Location(providerName);
@@ -66,6 +66,7 @@ public class StartRun extends AppCompatActivity {
             totalMilesTraveled += milesBetween;
 
             trackedMiles.setText(totalMilesTraveled.toString());
+            trackRunSwitch.isChecked();
         }
 
 
