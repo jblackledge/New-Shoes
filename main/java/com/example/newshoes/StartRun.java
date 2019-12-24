@@ -22,9 +22,21 @@ import android.widget.TextView;
 
 public class StartRun extends AppCompatActivity implements LocationListener {
 
-//    private TextView currentLocationText = findViewById(R.id.current_location_test);
+//    private Location startLocation;
 //
-//    private TextView startLocationText = findViewById(R.id.start_location_test);
+//    private Location currentLocation;
+//
+//    private Double totalMilesTraveled;
+
+//    private final LocationManager LOCATION_MANAGER =
+//            (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+//
+//    private LocationManager locationManager;
+//
+//    private TextView startLocationText;
+//
+//    private TextView currentLocationText;
+
 
 
     @Override
@@ -39,13 +51,42 @@ public class StartRun extends AppCompatActivity implements LocationListener {
         testingShoe.setText(shoe.toString());
 
         TextView trackedMiles = findViewById(R.id.mile_count_text);
-        trackedMiles.setText("0.00");
+        //trackedMiles.setText("0.00");
         checkLocationPermission();
+    }
+
+    public void getStartLocation(View view) {
+        Criteria criteria = new Criteria();
+        criteria.setAccuracy(Criteria.ACCURACY_FINE);
+
+        LocationManager locationManager =
+                (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
+        String provider = locationManager.getBestProvider(criteria, true);
+
+        if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED &&
+                checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) !=
+                        PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    Activity#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for Activity#requestPermissions for more details.
+            return;
+        }
+        Location startLocation = locationManager.getLastKnownLocation(provider);
+
+        TextView startLocationText = findViewById(R.id.start_location_test);
+        startLocationText.setText(startLocation.toString());
+        trackRun(view);
     }
 
     public void trackRun(View view) {
         final Double VALUE_OF_MILE_IN_METERS = 0.000621371;
-        Switch trackRunSwitch = findViewById(R.id.track_run_switch);
+        //Switch trackRunSwitch = findViewById(R.id.track_run_switch);
         Double totalMilesTraveled = 0.0;
         TextView trackedMiles = findViewById(R.id.mile_count_text);
 
@@ -75,25 +116,32 @@ public class StartRun extends AppCompatActivity implements LocationListener {
         Location startLocation = locationManager.getLastKnownLocation(provider);
 
         //TEST REMOVE LATER
-        TextView startLocationText = findViewById(R.id.start_location_test);
-        startLocationText.setText(startLocation.toString());
+//        TextView startLocationText = findViewById(R.id.start_location_test);
+//        startLocationText.setText(startLocation.toString());
         //END OF TEST CODE REMOVE LATER
         TextView currentLocationText = findViewById(R.id.current_location_test);
 
-        Float metersBetween = null;
-        Double metersBetweenDouble = null;
-        Double milesBetween = null;
+//        Float metersBetween = null;
+//        Double metersBetweenDouble = null;
+//        Double milesBetween = null;
 
         Location currentLocation = locationManager.getLastKnownLocation(provider);
         currentLocationText.setText(currentLocation.toString());
 
+        Float metersBetween = currentLocation.distanceTo(startLocation);
+        Double metersBetweenDouble = metersBetween.doubleValue();
+        Double milesBetween = metersBetweenDouble * VALUE_OF_MILE_IN_METERS;
+        totalMilesTraveled += milesBetween;
+
+        trackedMiles.setText(totalMilesTraveled.toString());
+
         locationManager.requestLocationUpdates(provider, 100, 2, this);
 //        while(trackRunSwitch.isChecked())
 //        {
-////            Float metersBetween = currentLocation.distanceTo(startLocation);
-////            Double metersBetweenDouble = metersBetween.doubleValue();
-////            Double milesBetween = metersBetweenDouble * VALUE_OF_MILE_IN_METERS;
-////            totalMilesTraveled += milesBetween;
+//            Float metersBetween = currentLocation.distanceTo(startLocation);
+//            Double metersBetweenDouble = metersBetween.doubleValue();
+//            Double milesBetween = metersBetweenDouble * VALUE_OF_MILE_IN_METERS;
+//            totalMilesTraveled += milesBetween;
 //
 //            metersBetween = currentLocation.distanceTo(startLocation);
 //            metersBetweenDouble = metersBetween.doubleValue();
@@ -185,8 +233,11 @@ public class StartRun extends AppCompatActivity implements LocationListener {
     }
 
     @Override
-    public void onLocationChanged(Location currentLocation) {
+    public void onLocationChanged(Location location) {
+//        final Double VALUE_OF_MILE_IN_METERS = 0.000621371;
+//        TextView trackedMiles = findViewById(R.id.mile_count_text);
 //        TextView currentLocationText = findViewById(R.id.current_location_test);
+//
 //        Criteria criteria = new Criteria();
 //        criteria.setAccuracy(Criteria.ACCURACY_FINE);
 //
@@ -195,7 +246,32 @@ public class StartRun extends AppCompatActivity implements LocationListener {
 //
 //        String provider = locationManager.getBestProvider(criteria, true);
 //
+//
+//        if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION)
+//                != PackageManager.PERMISSION_GRANTED &&
+//                checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) !=
+//                        PackageManager.PERMISSION_GRANTED) {
+//            // TODO: Consider calling
+//            //    Activity#requestPermissions
+//            // here to request the missing permissions, and then overriding
+//            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+//            //                                          int[] grantResults)
+//            // to handle the case where the user grants the permission. See the documentation
+//            // for Activity#requestPermissions for more details.
+//            trackedMiles.setText("Lol nope");
+//            return;
+//        }
+//
+//
 //        currentLocation = locationManager.getLastKnownLocation(provider);
+//        currentLocationText.setText(currentLocation.toString());
+//
+//        Float metersBetween = currentLocation.distanceTo(startLocation);
+//        Double metersBetweenDouble = metersBetween.doubleValue();
+//        Double milesBetween = metersBetweenDouble * VALUE_OF_MILE_IN_METERS;
+//        totalMilesTraveled += milesBetween;
+//
+//        trackedMiles.setText(totalMilesTraveled.toString());
     }
 
     @Override
