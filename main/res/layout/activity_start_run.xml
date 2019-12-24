@@ -78,8 +78,7 @@
         android:textSize="52dp"
         android:textStyle="bold"
         android:textColor="@color/backgroundColor"
-        android:text=""
-        android:onClick="trackRun"/>
+        android:text=""/>
 
     <TextView
         android:layout_width="wrap_content"
