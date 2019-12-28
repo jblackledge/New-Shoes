@@ -50,8 +50,6 @@ public class StartRun extends AppCompatActivity implements LocationListener {
         TextView testingShoe = findViewById(R.id.test_passed_shoe);
         testingShoe.setText(shoe.toString());
 
-        TextView trackedMiles = findViewById(R.id.mile_count_text);
-        //trackedMiles.setText("0.00");
         checkLocationPermission();
     }
 
@@ -86,7 +84,6 @@ public class StartRun extends AppCompatActivity implements LocationListener {
 
     public void trackRun(View view) {
         final Double VALUE_OF_MILE_IN_METERS = 0.000621371;
-        //Switch trackRunSwitch = findViewById(R.id.track_run_switch);
         totalMilesTraveled = 0.0;
         TextView trackedMiles = findViewById(R.id.mile_count_text);
 
@@ -115,15 +112,7 @@ public class StartRun extends AppCompatActivity implements LocationListener {
 
         startLocation = locationManager.getLastKnownLocation(provider);
 
-        //TEST REMOVE LATER
-//        TextView startLocationText = findViewById(R.id.start_location_test);
-//        startLocationText.setText(startLocation.toString());
-        //END OF TEST CODE REMOVE LATER
         TextView currentLocationText = findViewById(R.id.current_location_test);
-
-//        Float metersBetween = null;
-//        Double metersBetweenDouble = null;
-//        Double milesBetween = null;
 
         currentLocation = locationManager.getLastKnownLocation(provider);
         currentLocationText.setText(currentLocation.toString());
@@ -136,22 +125,6 @@ public class StartRun extends AppCompatActivity implements LocationListener {
         trackedMiles.setText(String.format("%.2f", totalMilesTraveled));
 
         locationManager.requestLocationUpdates(provider, 100, 2, this);
-//        while(trackRunSwitch.isChecked())
-//        {
-//            Float metersBetween = currentLocation.distanceTo(startLocation);
-//            Double metersBetweenDouble = metersBetween.doubleValue();
-//            Double milesBetween = metersBetweenDouble * VALUE_OF_MILE_IN_METERS;
-//            totalMilesTraveled += milesBetween;
-//
-//            metersBetween = currentLocation.distanceTo(startLocation);
-//            metersBetweenDouble = metersBetween.doubleValue();
-//            milesBetween = metersBetweenDouble * VALUE_OF_MILE_IN_METERS;
-//            totalMilesTraveled += milesBetween;
-//
-//            trackedMiles.setText(totalMilesTraveled.toString());
-//            currentLocation = locationManager.getLastKnownLocation(provider);
-//            trackRunSwitch.isChecked();
-//        }
     }
 
     public boolean checkLocationPermission() {
@@ -228,7 +201,6 @@ public class StartRun extends AppCompatActivity implements LocationListener {
                 }
                 return;
             }
-
         }
     }
 
@@ -261,8 +233,6 @@ public class StartRun extends AppCompatActivity implements LocationListener {
             trackedMiles.setText("Lol nope");
             return;
         }
-
-
         currentLocation = locationManager.getLastKnownLocation(provider);
         currentLocationText.setText(currentLocation.toString());
 
