@@ -126,8 +126,10 @@ public class StartRun extends AppCompatActivity implements LocationListener {
         locationManager.requestLocationUpdates(provider, 100, 2, this);
     }
 
-    public void addMilesToShoe() {
+    public void addMilesToShoe(View view) {
         shoe.setMileCount(totalMilesTraveled);
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 
     public boolean checkLocationPermission() {
