@@ -30,6 +30,7 @@ public class Shoe implements Serializable {
 
     public void setMileCount(Double mileCount) {
         this.mileCount += mileCount;
+        System.out.println(getMileCount());
     }
 
     public String toString() {
