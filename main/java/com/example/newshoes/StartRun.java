@@ -50,7 +50,7 @@ public class StartRun extends AppCompatActivity implements LocationListener {
 
     public void getStartLocation(View view) {
         Criteria criteria = new Criteria();
-        criteria.setAccuracy(Criteria.ACCURACY_FINE);
+        criteria.setAccuracy(Criteria.ACCURACY_COARSE);
 
         LocationManager locationManager =
                 (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -83,7 +83,7 @@ public class StartRun extends AppCompatActivity implements LocationListener {
         trackedMiles = findViewById(R.id.mile_count_text);
 
         Criteria criteria = new Criteria();
-        criteria.setAccuracy(Criteria.ACCURACY_FINE);
+        criteria.setAccuracy(Criteria.ACCURACY_COARSE);
 
         LocationManager locationManager =
                 (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -206,7 +206,7 @@ public class StartRun extends AppCompatActivity implements LocationListener {
         currentLocationText = findViewById(R.id.current_location_test);
 
         Criteria criteria = new Criteria();
-        criteria.setAccuracy(Criteria.ACCURACY_FINE);
+        criteria.setAccuracy(Criteria.ACCURACY_COARSE);
 
         LocationManager locationManager =
                 (LocationManager) getSystemService(Context.LOCATION_SERVICE);
