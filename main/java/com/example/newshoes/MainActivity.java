@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        System.out.println("Hey this was called");              //TEST DELETE LATER!!!!!!!!!!
         showShoeList();
     }
 
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
     public void showShoeList() {
         Spinner spinner = findViewById(R.id.choose_shoe_spinner);
         ArrayList<Shoe> shoeList = AddShoeActivity.getShoeList();
+        System.out.println(shoeList.toString());        //TEST DELETE LATER!!!!!!!!!!!!!!!!!!!!
         ArrayAdapter<Shoe> spinnerArrayListAdapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, shoeList);
 
