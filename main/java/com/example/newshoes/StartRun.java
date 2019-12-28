@@ -22,6 +22,8 @@ import android.widget.TextView;
 
 public class StartRun extends AppCompatActivity implements LocationListener {
 
+    private final double LOCATION_CHANGED_LIMITATION = .00725;
+
     private Location startLocation;
 
     private Location currentLocation;
@@ -50,7 +52,7 @@ public class StartRun extends AppCompatActivity implements LocationListener {
 
     public void getStartLocation(View view) {
         Criteria criteria = new Criteria();
-        criteria.setAccuracy(Criteria.ACCURACY_COARSE);
+        criteria.setAccuracy(Criteria.ACCURACY_FINE);
 
         LocationManager locationManager =
                 (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -83,7 +85,7 @@ public class StartRun extends AppCompatActivity implements LocationListener {
         trackedMiles = findViewById(R.id.mile_count_text);
 
         Criteria criteria = new Criteria();
-        criteria.setAccuracy(Criteria.ACCURACY_COARSE);
+        criteria.setAccuracy(Criteria.ACCURACY_FINE);
 
         LocationManager locationManager =
                 (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -206,7 +208,7 @@ public class StartRun extends AppCompatActivity implements LocationListener {
         currentLocationText = findViewById(R.id.current_location_test);
 
         Criteria criteria = new Criteria();
-        criteria.setAccuracy(Criteria.ACCURACY_COARSE);
+        criteria.setAccuracy(Criteria.ACCURACY_FINE);
 
         LocationManager locationManager =
                 (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -235,7 +237,7 @@ public class StartRun extends AppCompatActivity implements LocationListener {
         Double metersBetweenDouble = metersBetween.doubleValue();
         Double milesBetween = metersBetweenDouble * VALUE_OF_MILE_IN_METERS;
 
-        if(milesBetween < .01)
+        if(milesBetween < LOCATION_CHANGED_LIMITATION)
         {
             return;
         }
