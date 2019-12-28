@@ -110,5 +110,17 @@
         android:textStyle="bold"
         android:text="Current loc text"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/stop_run_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/start_run_welcome_text"
+        app:layout_constraintRight_toLeftOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/track_run_switch"
+        android:text="Stop"
+        android:onClick="addMilesToShoe"/>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
