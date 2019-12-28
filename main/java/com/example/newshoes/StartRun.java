@@ -36,13 +36,15 @@ public class StartRun extends AppCompatActivity implements LocationListener {
 
     private TextView trackedMiles;
 
+    private Shoe shoe;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_run);
 
         Intent intent = getIntent();
-        Shoe shoe = (Shoe) intent.getSerializableExtra("Shoe");
+        shoe = (Shoe) intent.getSerializableExtra("Shoe");
 
         TextView testingShoe = findViewById(R.id.test_passed_shoe);
         testingShoe.setText(shoe.toString());
@@ -122,6 +124,10 @@ public class StartRun extends AppCompatActivity implements LocationListener {
         trackedMiles.setText(String.format("%.2f", totalMilesTraveled));
 
         locationManager.requestLocationUpdates(provider, 100, 2, this);
+    }
+
+    public void addMilesToShoe() {
+        shoe.setMileCount(totalMilesTraveled);
     }
 
     public boolean checkLocationPermission() {
