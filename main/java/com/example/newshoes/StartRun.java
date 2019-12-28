@@ -108,7 +108,7 @@ public class StartRun extends AppCompatActivity implements LocationListener {
 
         String provider = locationManager.getBestProvider(criteria, true);
 
-        startLocation = locationManager.getLastKnownLocation(provider);
+//        startLocation = locationManager.getLastKnownLocation(provider);
 
         currentLocationText = findViewById(R.id.current_location_test);
 
