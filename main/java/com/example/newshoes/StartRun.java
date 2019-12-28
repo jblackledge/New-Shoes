@@ -20,6 +20,8 @@ import android.widget.Button;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class StartRun extends AppCompatActivity implements LocationListener {
 
     private final double LOCATION_CHANGED_LIMITATION = .00725;
@@ -108,8 +110,6 @@ public class StartRun extends AppCompatActivity implements LocationListener {
 
         String provider = locationManager.getBestProvider(criteria, true);
 
-//        startLocation = locationManager.getLastKnownLocation(provider);
-
         currentLocationText = findViewById(R.id.current_location_test);
 
         currentLocation = locationManager.getLastKnownLocation(provider);
@@ -121,7 +121,19 @@ public class StartRun extends AppCompatActivity implements LocationListener {
     }
 
     public void addMilesToShoe(View view) {
-        shoe.setMileCount(totalMilesTraveled);
+        ArrayList<Shoe> myList = AddShoeActivity.getShoeList();
+        for(Shoe shoe : myList)
+        {
+            if(this.shoe.toString().equals(shoe.toString()))
+            {
+                int indexOfShoeInList = myList.indexOf(shoe);
+                myList.remove(shoe);
+                this.shoe.setMileCount(totalMilesTraveled);
+                myList.add(indexOfShoeInList, this.shoe);
+            }
+        }
+        //System.out.println(shoe);
+        System.out.println(AddShoeActivity.getShoeList());      //TEST DELETE LATER!!!!!!!!!
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
