@@ -112,10 +112,10 @@ public class StartRun extends AppCompatActivity implements LocationListener {
         currentLocation = locationManager.getLastKnownLocation(provider);
         currentLocationText.setText(currentLocation.toString());
 
-        Float metersBetween = currentLocation.distanceTo(startLocation);
-        Double metersBetweenDouble = metersBetween.doubleValue();
-        Double milesBetween = metersBetweenDouble * VALUE_OF_MILE_IN_METERS;
-        totalMilesTraveled += milesBetween;
+//        Float metersBetween = currentLocation.distanceTo(startLocation);
+//        Double metersBetweenDouble = metersBetween.doubleValue();
+//        Double milesBetween = metersBetweenDouble * VALUE_OF_MILE_IN_METERS;
+//        totalMilesTraveled += milesBetween;
 
         trackedMiles.setText(String.format("%.2f", totalMilesTraveled));
 
@@ -234,6 +234,12 @@ public class StartRun extends AppCompatActivity implements LocationListener {
         Float metersBetween = currentLocation.distanceTo(startLocation);
         Double metersBetweenDouble = metersBetween.doubleValue();
         Double milesBetween = metersBetweenDouble * VALUE_OF_MILE_IN_METERS;
+
+        if(milesBetween < .01)
+        {
+            return;
+        }
+
         totalMilesTraveled += milesBetween;
 
         trackedMiles.setText(String.format("%.2f", totalMilesTraveled));
