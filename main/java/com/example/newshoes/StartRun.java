@@ -28,14 +28,9 @@ public class StartRun extends AppCompatActivity implements LocationListener {
 
     private Double totalMilesTraveled;
 
-//    private final LocationManager LOCATION_MANAGER =
-//            (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-//
-//    private LocationManager locationManager;
-//
-//    private TextView startLocationText;
-//
-//    private TextView currentLocationText;
+    private TextView startLocationText;
+
+    private TextView currentLocationText;
 
 
 
@@ -77,7 +72,7 @@ public class StartRun extends AppCompatActivity implements LocationListener {
         }
         startLocation = locationManager.getLastKnownLocation(provider);
 
-        TextView startLocationText = findViewById(R.id.start_location_test);
+        startLocationText = findViewById(R.id.start_location_test);
         startLocationText.setText(startLocation.toString());
         trackRun(view);
     }
@@ -112,7 +107,7 @@ public class StartRun extends AppCompatActivity implements LocationListener {
 
         startLocation = locationManager.getLastKnownLocation(provider);
 
-        TextView currentLocationText = findViewById(R.id.current_location_test);
+        currentLocationText = findViewById(R.id.current_location_test);
 
         currentLocation = locationManager.getLastKnownLocation(provider);
         currentLocationText.setText(currentLocation.toString());
@@ -208,7 +203,7 @@ public class StartRun extends AppCompatActivity implements LocationListener {
     public void onLocationChanged(Location location) {
         final Double VALUE_OF_MILE_IN_METERS = 0.000621371;
         TextView trackedMiles = findViewById(R.id.mile_count_text);
-        TextView currentLocationText = findViewById(R.id.current_location_test);
+        currentLocationText = findViewById(R.id.current_location_test);
 
         Criteria criteria = new Criteria();
         criteria.setAccuracy(Criteria.ACCURACY_FINE);
