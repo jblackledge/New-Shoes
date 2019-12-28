@@ -32,7 +32,7 @@ public class StartRun extends AppCompatActivity implements LocationListener {
 
     private TextView currentLocationText;
 
-
+    private TextView trackedMiles;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +80,7 @@ public class StartRun extends AppCompatActivity implements LocationListener {
     public void trackRun(View view) {
         final Double VALUE_OF_MILE_IN_METERS = 0.000621371;
         totalMilesTraveled = 0.0;
-        TextView trackedMiles = findViewById(R.id.mile_count_text);
+        trackedMiles = findViewById(R.id.mile_count_text);
 
         Criteria criteria = new Criteria();
         criteria.setAccuracy(Criteria.ACCURACY_FINE);
@@ -202,7 +202,7 @@ public class StartRun extends AppCompatActivity implements LocationListener {
     @Override
     public void onLocationChanged(Location location) {
         final Double VALUE_OF_MILE_IN_METERS = 0.000621371;
-        TextView trackedMiles = findViewById(R.id.mile_count_text);
+        trackedMiles = findViewById(R.id.mile_count_text);
         currentLocationText = findViewById(R.id.current_location_test);
 
         Criteria criteria = new Criteria();
@@ -237,6 +237,7 @@ public class StartRun extends AppCompatActivity implements LocationListener {
         totalMilesTraveled += milesBetween;
 
         trackedMiles.setText(String.format("%.2f", totalMilesTraveled));
+        startLocation = currentLocation;
     }
 
     @Override
