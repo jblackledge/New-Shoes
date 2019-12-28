@@ -82,7 +82,6 @@ public class StartRun extends AppCompatActivity implements LocationListener {
     }
 
     public void trackRun(View view) {
-        final Double VALUE_OF_MILE_IN_METERS = 0.000621371;
         totalMilesTraveled = 0.0;
         trackedMiles = findViewById(R.id.mile_count_text);
 
@@ -115,11 +114,6 @@ public class StartRun extends AppCompatActivity implements LocationListener {
 
         currentLocation = locationManager.getLastKnownLocation(provider);
         currentLocationText.setText(currentLocation.toString());
-
-//        Float metersBetween = currentLocation.distanceTo(startLocation);
-//        Double metersBetweenDouble = metersBetween.doubleValue();
-//        Double milesBetween = metersBetweenDouble * VALUE_OF_MILE_IN_METERS;
-//        totalMilesTraveled += milesBetween;
 
         trackedMiles.setText(String.format("%.2f", totalMilesTraveled));
 
