@@ -292,6 +292,19 @@ public class StartRun extends AppCompatActivity implements LocationListener {
         progressBar.setProgress(progress);
     }
 
+    public void pauseRun(View view) {
+        LocationManager locationManager =
+                (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
+        locationManager.removeUpdates(this);
+
+        Context context = getApplicationContext();
+        CharSequence toastText = "Run paused";
+        int duration = Toast.LENGTH_SHORT;
+        Toast toast = Toast.makeText(context, toastText, duration);
+        toast.show();
+    }
+
     @Override
     public void onStatusChanged(String provider, int status, Bundle extras) {
 
