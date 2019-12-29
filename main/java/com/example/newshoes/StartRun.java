@@ -44,6 +44,7 @@ public class StartRun extends AppCompatActivity implements LocationListener {
 
     private Integer toastTally;
 
+    private ProgressBar progressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,9 +58,11 @@ public class StartRun extends AppCompatActivity implements LocationListener {
         TextView testingShoe = findViewById(R.id.test_passed_shoe);
         testingShoe.setText(shoe.toString());
 
-        ProgressBar progressBar = findViewById(R.id.run_progress_bar);
-        progressBar.setMax(shoe.getDesiredDistanceInMiles().intValue());
-        progressBar.setProgress(shoe.getMileCount().intValue());
+        progressBar = findViewById(R.id.run_progress_bar);
+//        progressBar.setMax(shoe.getDesiredDistanceInMiles().intValue());
+//        progressBar.setProgress(shoe.getMileCount().intValue());
+        progressBar.setMax(100);
+        progressBar.setProgress(50);
 
         checkLocationPermission();
     }
@@ -142,8 +145,6 @@ public class StartRun extends AppCompatActivity implements LocationListener {
                 myList.add(indexOfShoeInList, this.shoe);
             }
         }
-        //System.out.println(shoe);
-        System.out.println(AddShoeActivity.getShoeList());      //TEST DELETE LATER!!!!!!!!!
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
@@ -287,7 +288,7 @@ public class StartRun extends AppCompatActivity implements LocationListener {
     }
 
     public void updateProgressBar(int progress) {
-        ProgressBar progressBar = findViewById(R.id.run_progress_bar);
+        progressBar = findViewById(R.id.run_progress_bar);
         progressBar.setProgress(progress);
     }
 
