@@ -9,6 +9,10 @@ import android.view.View;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+
+import static java.util.Collections.*;
 
 public class AddShoeActivity extends AppCompatActivity {
 
@@ -35,6 +39,7 @@ public class AddShoeActivity extends AppCompatActivity {
 
         myShoe = new Shoe(shoeName, shoeDistance);
         shoeList.add(myShoe);
+        Collections.sort(shoeList);
 
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
