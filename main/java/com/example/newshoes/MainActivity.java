@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity implements Serializable {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        System.out.println("Hey this was called");              //TEST DELETE LATER!!!!!!!!!!
         showShoeList();
     }
 
