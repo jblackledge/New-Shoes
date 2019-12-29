@@ -59,10 +59,10 @@ public class StartRun extends AppCompatActivity implements LocationListener {
         testingShoe.setText(shoe.toString());
 
         progressBar = findViewById(R.id.run_progress_bar);
-//        progressBar.setMax(shoe.getDesiredDistanceInMiles().intValue());
-//        progressBar.setProgress(shoe.getMileCount().intValue());
-        progressBar.setMax(100);
-        progressBar.setProgress(50);
+        progressBar.setMax(shoe.getDesiredDistanceInMiles().intValue());
+        progressBar.setProgress(shoe.getMileCount().intValue());
+//        progressBar.setMax(100);
+//        progressBar.setProgress(50);
 
         checkLocationPermission();
     }
