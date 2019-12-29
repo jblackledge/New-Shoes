@@ -3,7 +3,7 @@ package com.example.newshoes;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Shoe implements Serializable {
+public class Shoe implements Serializable, Comparable<Shoe> {
     private String shoeName;
 
     private Double desiredDistanceInMiles;
@@ -37,4 +37,8 @@ public class Shoe implements Serializable {
         return String.format("%s - Current Mile Count: %.2f", this.shoeName, this.getMileCount());
     }
 
+    @Override
+    public int compareTo(Shoe o) {
+        return this.shoeName.compareTo(o.shoeName);
+    }
 }
