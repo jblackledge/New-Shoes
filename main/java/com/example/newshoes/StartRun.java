@@ -19,6 +19,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -40,10 +41,14 @@ public class StartRun extends AppCompatActivity implements LocationListener {
 
     private Shoe shoe;
 
+    private Integer toastTally;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_run);
+
+        toastTally = 0;
 
         Intent intent = getIntent();
         shoe = (Shoe) intent.getSerializableExtra("Shoe");
@@ -251,6 +256,9 @@ public class StartRun extends AppCompatActivity implements LocationListener {
         Double metersBetweenDouble = metersBetween.doubleValue();
         Double milesBetween = metersBetweenDouble * VALUE_OF_MILE_IN_METERS;
 
+        TextView distanceTo = findViewById(R.id.distance_to_test);
+        distanceTo.setText(String.format("Distance to: %.6f", milesBetween));
+
         if(milesBetween < LOCATION_CHANGED_LIMITATION)
         {
             return;
@@ -260,6 +268,16 @@ public class StartRun extends AppCompatActivity implements LocationListener {
 
         trackedMiles.setText(String.format("%.2f", totalMilesTraveled));
         startLocation = currentLocation;
+
+        if( (totalMilesTraveled >= shoe.getDesiredDistanceInMiles()) && toastTally < 1)
+        {
+            Context context = getApplicationContext();
+            CharSequence toastText = "Time for a new pair of shoes!";
+            int duration = Toast.LENGTH_LONG;
+            Toast toast = Toast.makeText(context, toastText, duration);
+            toast.show();
+            ++toastTally;
+        }
     }
 
     @Override

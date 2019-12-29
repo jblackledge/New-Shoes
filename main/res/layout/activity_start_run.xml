@@ -115,11 +115,27 @@
         android:layout_height="wrap_content"
         android:id="@+id/stop_run_button"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/start_run_welcome_text"
-        app:layout_constraintRight_toLeftOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/track_run_switch"
-        android:text="Stop"
+        app:layout_constraintTop_toBottomOf="@id/test_passed_shoe"
+        app:layout_constraintRight_toLeftOf="@id/track_run_switch"
+        app:layout_constraintLeft_toRightOf="parent"
+        android:layout_marginLeft="100dp"
+        android:background="@color/colorAccent"
+        android:text="End Run"
         android:onClick="addMilesToShoe"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/distance_to_test"
+        app:layout_constraintLeft_toRightOf="parent"
+        app:layout_constraintRight_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/current_location_test"
+        android:textColor="@color/backgroundColor"
+        android:background="@color/titleColorTest"
+        android:textSize="10dp"
+        android:textStyle="bold"
+        android:text="Distnace to: "
+        android:layout_marginTop="40dp"/>
 
 
 
