@@ -74,6 +74,7 @@
         app:layout_constraintBottom_toTopOf="@id/track_run_switch"
         app:layout_constraintRight_toLeftOf="parent"
         app:layout_constraintLeft_toRightOf="parent"
+        android:layout_marginBottom="100dp"
         android:background="@color/titleColorTest"
         android:textSize="52dp"
         android:textStyle="bold"
@@ -136,6 +137,17 @@
         android:textStyle="bold"
         android:text="Distnace to: "
         android:layout_marginTop="40dp"/>
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/run_progress_bar"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        app:layout_constraintLeft_toRightOf="parent"
+        app:layout_constraintRight_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mile_count_text"
+        android:layout_marginTop="20dp"
+        android:minWidth="300dp"/>
 
 
 
