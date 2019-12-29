@@ -124,6 +124,19 @@
         android:text="End Run"
         android:onClick="addMilesToShoe"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/pause_run_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/test_passed_shoe"
+        app:layout_constraintRight_toLeftOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/track_run_switch"
+        android:layout_marginRight="100dp"
+        android:background="@color/titleColor"
+        android:text="Pause Run"
+        android:onClick="pauseRun"/>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
