@@ -17,6 +17,7 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -55,6 +56,10 @@ public class StartRun extends AppCompatActivity implements LocationListener {
 
         TextView testingShoe = findViewById(R.id.test_passed_shoe);
         testingShoe.setText(shoe.toString());
+
+        ProgressBar progressBar = findViewById(R.id.run_progress_bar);
+        progressBar.setMax(shoe.getDesiredDistanceInMiles().intValue());
+        progressBar.setProgress(shoe.getMileCount().intValue());
 
         checkLocationPermission();
     }
@@ -267,6 +272,7 @@ public class StartRun extends AppCompatActivity implements LocationListener {
         totalMilesTraveled += milesBetween;
 
         trackedMiles.setText(String.format("%.2f", totalMilesTraveled));
+        updateProgressBar(totalMilesTraveled.intValue());
         startLocation = currentLocation;
 
         if( (totalMilesTraveled >= shoe.getDesiredDistanceInMiles()) && toastTally < 1)
@@ -278,6 +284,11 @@ public class StartRun extends AppCompatActivity implements LocationListener {
             toast.show();
             ++toastTally;
         }
+    }
+
+    public void updateProgressBar(int progress) {
+        ProgressBar progressBar = findViewById(R.id.run_progress_bar);
+        progressBar.setProgress(progress);
     }
 
     @Override
