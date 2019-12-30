@@ -109,4 +109,15 @@ public class AddShoeActivity extends AppCompatActivity {
         }
         return shoeList;
     }
+
+    public static ArrayList<Shoe> deleteShoe(Shoe shoe) {
+
+        for(Shoe myShoe : shoeList) {
+            if(myShoe.toString().equals(shoe.toString())) {
+                shoeList.remove(myShoe);
+                break;
+            }
+        }
+        return shoeList;
+    }
 }
