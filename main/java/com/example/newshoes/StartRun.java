@@ -147,6 +147,7 @@ public class StartRun extends AppCompatActivity implements LocationListener {
                 break;      //without break, throws invokation target exception
             }
         }
+        AddShoeActivity.saveSharedPreferencesShoeList(this, myList);
 //        shoe.setMileCount(totalMilesTraveled);
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
