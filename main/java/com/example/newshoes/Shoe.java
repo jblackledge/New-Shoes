@@ -10,10 +10,13 @@ public class Shoe implements Serializable, Comparable<Shoe> {
 
     private Double mileCount;
 
+    private Double meterCount;
+
     public Shoe(String shoeName, Double distance) {
         this.shoeName = shoeName;
         this.desiredDistanceInMiles = distance;
         mileCount = 0.00;
+        meterCount = 0.00;
     }
 
     public String getName() {
@@ -32,6 +35,13 @@ public class Shoe implements Serializable, Comparable<Shoe> {
         this.mileCount += mileCount;
     }
 
+    public void setMeterCount(Double meterCount) {
+        this.meterCount = meterCount;
+    }
+
+    public Double getMeterCount() {
+        return meterCount;
+    }
     public String toString() {
         return String.format("%s - Current Mile Count: %.2f", this.shoeName, this.getMileCount());
     }
