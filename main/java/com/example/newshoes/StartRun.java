@@ -28,6 +28,8 @@ public class StartRun extends AppCompatActivity implements LocationListener {
 
     private final double LOCATION_CHANGED_LIMITATION = .00725;
 
+    private final Integer METERS_IN_A_MILE = 1609;
+
     private Location startLocation;
 
     private Location currentLocation;
@@ -59,8 +61,10 @@ public class StartRun extends AppCompatActivity implements LocationListener {
         testingShoe.setText(shoe.toString());
 
         progressBar = findViewById(R.id.run_progress_bar);
-        progressBar.setMax(shoe.getDesiredDistanceInMiles().intValue());
-        progressBar.setProgress(shoe.getMileCount().intValue());
+//        progressBar.setMax(shoe.getDesiredDistanceInMiles().intValue());
+//        progressBar.setProgress(shoe.getMileCount().intValue());
+        progressBar.setMax(shoe.getDesiredDistanceInMiles().intValue() * METERS_IN_A_MILE);     //Changed progress bar to meters instead of miles
+        progressBar.setProgress(shoe.getMileCount().intValue() * METERS_IN_A_MILE);             //Changed progress bar to meters instead of miles
 //        progressBar.setMax(100);
 //        progressBar.setProgress(50);
 
@@ -277,7 +281,8 @@ public class StartRun extends AppCompatActivity implements LocationListener {
         totalMilesTraveled += milesBetween;
 
         trackedMiles.setText(String.format("%.2f", totalMilesTraveled));
-        updateProgressBar(totalMilesTraveled.intValue());
+//        updateProgressBar(totalMilesTraveled.intValue());
+        updateProgressBar(totalMilesTraveled.intValue() * METERS_IN_A_MILE);        //Changed progress bar to meters instead of miles
         startLocation = currentLocation;
 
         if( (totalMilesTraveled >= shoe.getDesiredDistanceInMiles()) && toastTally < 1)
