@@ -135,6 +135,14 @@ public class StartRun extends AppCompatActivity implements LocationListener {
 
     public void addMilesToShoe(View view) {
         ArrayList<Shoe> myList = AddShoeActivity.getShoeList();
+        if(myList == null)
+        {
+            System.out.println("Yup it's null");
+        }
+        else
+        {
+            System.out.println(myList);
+        }
         for(Shoe shoe : myList)
         {
             if(this.shoe.toString().equals(shoe.toString()))
@@ -143,8 +151,10 @@ public class StartRun extends AppCompatActivity implements LocationListener {
                 myList.remove(shoe);
                 this.shoe.setMileCount(totalMilesTraveled);
                 myList.add(indexOfShoeInList, this.shoe);
+                break;      //without break, throws invokation target exception
             }
         }
+//        shoe.setMileCount(totalMilesTraveled);
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
