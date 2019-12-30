@@ -30,12 +30,6 @@ public class MainActivity extends AppCompatActivity implements Serializable {
 
     public void showShoeList() {
         Spinner spinner = findViewById(R.id.choose_shoe_spinner);
-//        ArrayList<Shoe> shoeList = AddShoeActivity.getShoeList();
-//
-//        if(shoeList == null) {
-//            shoeList = AddShoeActivity.loadSharedPreferencesShoeList(this);
-//        }
-
         ArrayList<Shoe> shoeList = AddShoeActivity.loadSharedPreferencesShoeList(this);
 
         ArrayAdapter<Shoe> spinnerArrayListAdapter = new ArrayAdapter<>(this,
@@ -50,12 +44,18 @@ public class MainActivity extends AppCompatActivity implements Serializable {
     public void startRun(View view) {
         Spinner spinner = findViewById(R.id.choose_shoe_spinner);
         Shoe chosenShoe = (Shoe)spinner.getSelectedItem();
-//        chosenShoe = (Shoe)chosenShoe;
 
-        //Shoe shoe = new Shoe("Nike", 500.0);
         Intent intent = new Intent(this, StartRun.class);
         intent.putExtra("Shoe", chosenShoe);
         startActivity(intent);
+    }
+
+    public void deleteShoe(View view) {
+        Spinner spinner = findViewById(R.id.choose_shoe_spinner);
+        Shoe chosenShoe = (Shoe)spinner.getSelectedItem();
+        AddShoeActivity.deleteShoe(chosenShoe);
+        AddShoeActivity.saveSharedPreferencesShoeList(this, AddShoeActivity.getShoeList());
+        showShoeList();
     }
 
 }
