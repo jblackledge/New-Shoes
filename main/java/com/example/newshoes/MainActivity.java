@@ -30,8 +30,14 @@ public class MainActivity extends AppCompatActivity implements Serializable {
 
     public void showShoeList() {
         Spinner spinner = findViewById(R.id.choose_shoe_spinner);
-        ArrayList<Shoe> shoeList = AddShoeActivity.getShoeList();
-        System.out.println(shoeList.toString());        //TEST DELETE LATER!!!!!!!!!!!!!!!!!!!!
+//        ArrayList<Shoe> shoeList = AddShoeActivity.getShoeList();
+//
+//        if(shoeList == null) {
+//            shoeList = AddShoeActivity.loadSharedPreferencesShoeList(this);
+//        }
+
+        ArrayList<Shoe> shoeList = AddShoeActivity.loadSharedPreferencesShoeList(this);
+
         ArrayAdapter<Shoe> spinnerArrayListAdapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, shoeList);
 
