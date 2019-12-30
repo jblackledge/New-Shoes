@@ -64,7 +64,7 @@ public class StartRun extends AppCompatActivity implements LocationListener {
 //        progressBar.setMax(shoe.getDesiredDistanceInMiles().intValue());
 //        progressBar.setProgress(shoe.getMileCount().intValue());
         progressBar.setMax(shoe.getDesiredDistanceInMiles().intValue() * METERS_IN_A_MILE);     //Changed progress bar to meters instead of miles
-        progressBar.setProgress(shoe.getMileCount().intValue() * METERS_IN_A_MILE);             //Changed progress bar to meters instead of miles
+        progressBar.setProgress(shoe.getMeterCount().intValue());             //Changed progress bar to meters instead of miles
 //        progressBar.setMax(100);
 //        progressBar.setProgress(50);
 
@@ -282,7 +282,8 @@ public class StartRun extends AppCompatActivity implements LocationListener {
 
         trackedMiles.setText(String.format("%.2f", totalMilesTraveled));
 //        updateProgressBar(totalMilesTraveled.intValue());
-        updateProgressBar(totalMilesTraveled.intValue() * METERS_IN_A_MILE);        //Changed progress bar to meters instead of miles
+        shoe.setMeterCount(metersBetweenDouble);
+        updateProgressBar(shoe.getMeterCount().intValue());        //Changed progress bar to meters instead of miles
         startLocation = currentLocation;
 
         if( (totalMilesTraveled >= shoe.getDesiredDistanceInMiles()) && toastTally < 1)
