@@ -12,4 +12,8 @@
     <string name="start_run_button">Start Run</string>
     <string name="start_run_welcome_string">Start Run</string>
     <string name="delete_shoe">Delete Shoe</string>
+    <string name="edit_shoe_welcome">Edit Shoe</string>
+    <string name="save_changes">Save Changes</string>
+    <string name="edit_desired_distance_text">Edit Desired Distance</string>
+    <string name="edit_shoe_name_text">Edit Shoe Name Text</string>
 </resources>
