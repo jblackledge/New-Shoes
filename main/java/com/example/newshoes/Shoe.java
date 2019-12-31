@@ -42,6 +42,15 @@ public class Shoe implements Serializable, Comparable<Shoe> {
     public Double getMeterCount() {
         return meterCount;
     }
+
+    public void changeShoeName(String shoeName) {
+        this.shoeName = shoeName;
+    }
+
+    public void changeDesiredDistanceInMiles(Double desiredDistanceInMiles) {
+        this.desiredDistanceInMiles = desiredDistanceInMiles;
+    }
+
     public String toString() {
         return String.format("%s - Current Mile Count: %.2f", this.shoeName, this.getMileCount());
     }
