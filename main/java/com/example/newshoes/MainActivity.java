@@ -58,4 +58,12 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         showShoeList();
     }
 
+    public void editShoe(View view) {
+        Spinner spinner = findViewById(R.id.choose_shoe_spinner);
+        Shoe chosenShoe = (Shoe)spinner.getSelectedItem();
+        Intent intent = new Intent(this, EditShoe.class);
+        intent.putExtra("Shoe", chosenShoe);
+        startActivity(intent);
+    }
+
 }
