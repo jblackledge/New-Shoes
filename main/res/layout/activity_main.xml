@@ -90,7 +90,7 @@
         android:layout_marginTop="12dp"
         android:background="@color/titleColorTest"
         android:text="@string/edit_shoe_welcome"
-        android:onClick="deleteShoe"/>
+        android:onClick="editShoe"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
