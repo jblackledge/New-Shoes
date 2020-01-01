@@ -41,6 +41,7 @@
         android:textSize="30dp"
         android:text=""
         android:width="400dp"
+        android:hint="Ex: Nike, Reebok, Adidas"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/edit_shoe_name_text" />
 
@@ -65,6 +66,7 @@
         android:text=""
         android:width="400dp"
         android:inputType="numberDecimal"
+        android:hint="Recommended 500-800 mi"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/edit_desired_distance_text" />
 
@@ -89,6 +91,7 @@
         android:text=""
         android:width="400dp"
         android:inputType="numberDecimal"
+        android:hint="Its cool, we all forget things"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/manually_enter_miles_text" />
 
