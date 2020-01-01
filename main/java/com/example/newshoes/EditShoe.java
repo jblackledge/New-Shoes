@@ -14,6 +14,8 @@ public class EditShoe extends AppCompatActivity {
 
     private Shoe shoe;
 
+    private final Integer METERS_IN_A_MILE = 1609;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,54 +33,101 @@ public class EditShoe extends AppCompatActivity {
                 break;
             }
         }
+//        TextView editDesiredDistanceField = findViewById(R.id.edit_desired_distance_text_field);
+//        System.out.println(editDesiredDistanceField.getText());
     }
 
     public void saveChanges(View view) {
-        EditText editShoeNameField = findViewById(R.id.edit_shoe_name_text_field);
+        TextView editShoeNameField = findViewById(R.id.edit_shoe_name_text_field);
         CharSequence editShoeNameCharSeq = editShoeNameField.getText();
         String editShoeNameString = editShoeNameCharSeq.toString();
 
         TextView editDesiredDistanceField = (TextView)findViewById(R.id.edit_desired_distance_text_field);
         CharSequence desiredDistanceFieldCharSeq = editDesiredDistanceField.getText();
         String desiredDistanceFieldString = desiredDistanceFieldCharSeq.toString();
-        Double desiredDistanceDouble = Double.valueOf(desiredDistanceFieldString);
+        Double desiredDistanceDouble = 0.0;
 
-        EditText manuallyEnterMilesField = findViewById(R.id.manually_enter_miles_text_field);
+
+        TextView manuallyEnterMilesField = findViewById(R.id.manually_enter_miles_text_field);
         CharSequence manuallyEnterMilesFieldCharSeq = manuallyEnterMilesField.getText();
         String manuallyEnterMilesString = manuallyEnterMilesFieldCharSeq.toString();
-        Double manuallyEnterMilesDouble = Double.valueOf(manuallyEnterMilesString);
+        Double manuallyEnterMilesDouble = 0.0;
 
-        if((editShoeNameField.getText() != null) && (editDesiredDistanceField.getText() != null)
-                && (manuallyEnterMilesField != null))
+        if((!editShoeNameField.getText().toString().equals("")) && (!editDesiredDistanceField.getText().toString().equals(""))
+                && (!manuallyEnterMilesField.getText().toString().equals("")))
         {
             shoe.changeShoeName(editShoeNameString);
+            desiredDistanceDouble = Double.valueOf(desiredDistanceFieldString);
             shoe.changeDesiredDistanceInMiles(desiredDistanceDouble);
+            manuallyEnterMilesDouble = Double.valueOf(manuallyEnterMilesString);
             shoe.setMileCount(manuallyEnterMilesDouble);
+            shoe.setMeterCount(manuallyEnterMilesDouble * METERS_IN_A_MILE);
         }
-        else if((editShoeNameField.getText() != null) && (editDesiredDistanceField.getText() != null))
+        else if((!editShoeNameField.getText().toString().equals("")) &&
+                (!editDesiredDistanceField.getText().toString().equals("")))
         {
             shoe.changeShoeName(editShoeNameString);
+            desiredDistanceDouble = Double.valueOf(desiredDistanceFieldString);
             shoe.changeDesiredDistanceInMiles(desiredDistanceDouble);
         }
-        else if((editShoeNameField.getText() != null) && (manuallyEnterMilesField != null))
+        else if(!editShoeNameField.getText().toString().equals("") && (!manuallyEnterMilesField.getText().toString().equals("")))
         {
             shoe.changeShoeName(editShoeNameString);
+            manuallyEnterMilesDouble = Double.valueOf(manuallyEnterMilesString);
             shoe.setMileCount(manuallyEnterMilesDouble);
+            shoe.setMeterCount(manuallyEnterMilesDouble * METERS_IN_A_MILE);
         }
-        else if((editShoeNameField.getText() != null))
+        else if((!editShoeNameField.getText().toString().equals("")))
         {
             shoe.changeShoeName(editShoeNameString);
         }
-        else if((editDesiredDistanceField.getText() != null)
-                && (manuallyEnterMilesField != null))
+        else if((!editDesiredDistanceField.getText().toString().equals("")
+                && (!manuallyEnterMilesField.getText().toString().equals(""))))
         {
+            desiredDistanceDouble = Double.valueOf(desiredDistanceFieldString);
             shoe.changeDesiredDistanceInMiles(desiredDistanceDouble);
+            manuallyEnterMilesDouble = Double.valueOf(manuallyEnterMilesString);
             shoe.setMileCount(manuallyEnterMilesDouble);
+            shoe.setMeterCount(manuallyEnterMilesDouble * METERS_IN_A_MILE);
         }
-        else if((manuallyEnterMilesField != null))
+        else if((!manuallyEnterMilesField.getText().toString().equals("")))
         {
+            manuallyEnterMilesDouble = Double.valueOf(manuallyEnterMilesString);
             shoe.setMileCount(manuallyEnterMilesDouble);
+            shoe.setMeterCount(manuallyEnterMilesDouble * METERS_IN_A_MILE);
         }
+
+//        if((editShoeNameString != null) && (desiredDistanceDouble != null)
+//                && (manuallyEnterMilesDouble != null))
+//        {
+//            shoe.changeShoeName(editShoeNameString);
+//            shoe.changeDesiredDistanceInMiles(desiredDistanceDouble);
+//            shoe.setMileCount(manuallyEnterMilesDouble);
+//        }
+//        else if((editShoeNameString != null) && (desiredDistanceDouble != null))
+//        {
+//            shoe.changeShoeName(editShoeNameString);
+//            shoe.changeDesiredDistanceInMiles(desiredDistanceDouble);
+//        }
+//        else if((editShoeNameString != null) && (manuallyEnterMilesDouble != null))
+//        {
+//            shoe.changeShoeName(editShoeNameString);
+//            shoe.setMileCount(manuallyEnterMilesDouble);
+//        }
+//        else if((editShoeNameString != null))
+//        {
+//            shoe.changeShoeName(editShoeNameString);
+//        }
+//        else if((desiredDistanceDouble != null)
+//                && (manuallyEnterMilesField != null))
+//        {
+//            shoe.changeDesiredDistanceInMiles(desiredDistanceDouble);
+//            shoe.setMileCount(manuallyEnterMilesDouble);
+//        }
+//        else if((manuallyEnterMilesField != null))
+//        {
+//            shoe.setMileCount(manuallyEnterMilesDouble);
+//        }
 
         AddShoeActivity.saveSharedPreferencesShoeList(this, AddShoeActivity.getShoeList());
         Intent intent = new Intent(this, MainActivity.class);
