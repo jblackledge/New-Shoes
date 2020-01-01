@@ -97,8 +97,8 @@ public class StartRun extends AppCompatActivity implements LocationListener {
         }
         startLocation = locationManager.getLastKnownLocation(provider);
 
-        startLocationText = findViewById(R.id.start_location_test);
-        startLocationText.setText(startLocation.toString());
+//        startLocationText = findViewById(R.id.start_location_test);
+//        startLocationText.setText(startLocation.toString());
         trackRun(view);
     }
 
@@ -129,10 +129,10 @@ public class StartRun extends AppCompatActivity implements LocationListener {
 
         String provider = locationManager.getBestProvider(criteria, true);
 
-        currentLocationText = findViewById(R.id.current_location_test);
+//        currentLocationText = findViewById(R.id.current_location_test);
 
         currentLocation = locationManager.getLastKnownLocation(provider);
-        currentLocationText.setText(currentLocation.toString());
+//        currentLocationText.setText(currentLocation.toString());
 
         trackedMiles.setText(String.format("%.2f", totalMilesTraveled));
 
@@ -240,7 +240,7 @@ public class StartRun extends AppCompatActivity implements LocationListener {
     public void onLocationChanged(Location location) {
         final Double VALUE_OF_MILE_IN_METERS = 0.000621371;
         trackedMiles = findViewById(R.id.mile_count_text);
-        currentLocationText = findViewById(R.id.current_location_test);
+//        currentLocationText = findViewById(R.id.current_location_test);
 
         Criteria criteria = new Criteria();
         criteria.setAccuracy(Criteria.ACCURACY_FINE);
@@ -266,14 +266,14 @@ public class StartRun extends AppCompatActivity implements LocationListener {
             return;
         }
         currentLocation = locationManager.getLastKnownLocation(provider);
-        currentLocationText.setText(currentLocation.toString());
+//        currentLocationText.setText(currentLocation.toString());
 
         Float metersBetween = currentLocation.distanceTo(startLocation);
         Double metersBetweenDouble = metersBetween.doubleValue();
         Double milesBetween = metersBetweenDouble * VALUE_OF_MILE_IN_METERS;
 
-        TextView distanceTo = findViewById(R.id.distance_to_test);
-        distanceTo.setText(String.format("Distance to: %.6f", milesBetween));
+//        TextView distanceTo = findViewById(R.id.distance_to_test);
+//        distanceTo.setText(String.format("Distance to: %.6f", milesBetween));
 
         if(milesBetween < LOCATION_CHANGED_LIMITATION)
         {
