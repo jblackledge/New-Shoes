@@ -36,7 +36,7 @@ public class Shoe implements Serializable, Comparable<Shoe> {
     }
 
     public void setMeterCount(Double meterCount) {
-        this.meterCount = meterCount;
+        this.meterCount += meterCount;
     }
 
     public Double getMeterCount() {
