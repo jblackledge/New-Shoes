@@ -40,6 +40,7 @@
         android:textColor="@color/titleColorTest"
         android:textSize="30dp"
         android:width="400dp"
+        android:hint="Ex: Nike, Reebok, Adidas"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/enter_shoe_name_text" />
 
@@ -63,6 +64,7 @@
         android:textSize="30dp"
         android:width="400dp"
         android:inputType="numberDecimal"
+        android:hint="Recommended 500-800 mi"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/desired_distance_text" />
 
