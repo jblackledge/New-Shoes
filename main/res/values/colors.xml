@@ -7,5 +7,5 @@
     <color name="backgroundColor">#F0F8FF</color>
     <color name="titleColorTest">#318CE7</color>
     <color name="progressBarTest">#03c03c</color>
-<!--    <color name="progressBarTest">#46cb18</color>-->
+    <color name="progressBarText">#000000</color>-->
 </resources>

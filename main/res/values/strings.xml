@@ -17,4 +17,5 @@
     <string name="edit_desired_distance_text">Edit Desired Distance:</string>
     <string name="edit_shoe_name_text">Edit Shoe Name Text:</string>
     <string name="manually_enter_miles">Manually Enter Miles:</string>
+    <string name="progress_bar_start_text">0</string>
 </resources>
