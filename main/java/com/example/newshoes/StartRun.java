@@ -67,6 +67,8 @@ public class StartRun extends AppCompatActivity implements LocationListener {
         progressBar.setProgress(shoe.getMeterCount().intValue());             //Changed progress bar to meters instead of miles
 //        progressBar.setMax(100);
 //        progressBar.setProgress(50);
+        TextView progressBarDistanceText = findViewById(R.id.progress_bar_end_text);
+        progressBarDistanceText.setText(shoe.getDesiredDistanceInMiles().toString());
 
         checkLocationPermission();
     }
