@@ -2,12 +2,16 @@ package com.example.newshoes;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewParent;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -120,4 +124,37 @@ public class AddShoeActivity extends AppCompatActivity {
         }
         return shoeList;
     }
+
+//    public void exitKeyboard(View view) {
+//
+//        ViewParent viewParent = findViewById(R.id.parent);
+//        EditText editTextName = findViewById(R.id.edit_shoe_name_text_field);
+//        editTextName.setText("Yup");
+//        InputMethodManager inputMethodManager =(InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
+//        if(inputMethodManager.isAcceptingText())
+//        {
+//            hideKeyboard(view);
+//        }
+//    }
+
+    public void hideKeyboard(View view) {
+        InputMethodManager inputMethodManager =(InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
+        if(inputMethodManager.isActive()) {
+            inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+    }
+//    public void doThing(View view) {
+//        hideKeyboard(this);
+//    }
+//
+//    public static void hideKeyboard(Activity activity) {
+//        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+//        //Find the currently focused view, so we can grab the correct window token from it.
+//        View view = activity.getCurrentFocus();
+//        //If no view currently has focus, create a new one, just so we can grab a window token from it
+//        if (view == null) {
+//            view = new View(activity);
+//        }
+//        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+//    }
 }
