@@ -26,7 +26,8 @@ import java.util.ArrayList;
 
 public class StartRun extends AppCompatActivity implements LocationListener {
 
-    private final double LOCATION_CHANGED_LIMITATION = .00725;
+//    private final double LOCATION_CHANGED_LIMITATION = .00725;
+    private final double LOCATION_CHANGED_LIMITATION = .009;
 
     private final Integer METERS_IN_A_MILE = 1609;
 
