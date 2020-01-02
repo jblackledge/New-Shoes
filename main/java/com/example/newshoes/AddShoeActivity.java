@@ -13,10 +13,12 @@ import android.view.ViewParent;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -71,16 +73,26 @@ public class AddShoeActivity extends AppCompatActivity {
         TextView shoeDistanceText = (TextView)(findViewById(R.id.desired_distance_text_field));
         CharSequence shoeDistanceSequence = shoeDistanceText.getText();
         String shoeDistanceString = shoeDistanceSequence.toString();
-        Double shoeDistance = Double.valueOf(shoeDistanceString);
+        Double shoeDistance = 0.0;
 
-        myShoe = new Shoe(shoeName, shoeDistance);
-        shoeList.add(myShoe);
-        Collections.sort(shoeList);
+        try{
+            shoeDistance = Double.valueOf(shoeDistanceString);
+            myShoe = new Shoe(shoeName, shoeDistance);
+            shoeList.add(myShoe);
+            Collections.sort(shoeList);
 
-        saveSharedPreferencesShoeList(this, shoeList);
+            saveSharedPreferencesShoeList(this, shoeList);
 
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        }
+        catch (Exception e){
+            Toast toast = Toast.makeText(this, "Please enter a valid number", Toast.LENGTH_LONG);
+            toast.show();
+        }
+
+
+
     }
 
 //    public void addToShoeList() {
