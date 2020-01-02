@@ -2,9 +2,11 @@ package com.example.newshoes;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -33,6 +35,39 @@ public class EditShoe extends AppCompatActivity {
                 break;
             }
         }
+        TextView editShoeNameField = (TextView) findViewById(R.id.edit_shoe_name_text_field);
+        TextView editDesiredDistanceField = (TextView) findViewById(R.id.edit_desired_distance_text_field);
+        TextView manuallyEnterMilesField = (TextView) findViewById(R.id.manually_enter_miles_text_field);
+
+        editShoeNameField.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    // code to execute when EditText loses focus
+                    hideKeyboard(v);
+                }
+            }
+        });
+
+        editDesiredDistanceField.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    // code to execute when EditText loses focus
+                    hideKeyboard(v);
+                }
+            }
+        });
+
+        manuallyEnterMilesField.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    // code to execute when EditText loses focus
+                    hideKeyboard(v);
+                }
+            }
+        });
 //        TextView editDesiredDistanceField = findViewById(R.id.edit_desired_distance_text_field);
 //        System.out.println(editDesiredDistanceField.getText());
     }
@@ -132,5 +167,10 @@ public class EditShoe extends AppCompatActivity {
         AddShoeActivity.saveSharedPreferencesShoeList(this, AddShoeActivity.getShoeList());
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+    }
+
+    public void hideKeyboard(View view) {
+        InputMethodManager inputMethodManager =(InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 }
