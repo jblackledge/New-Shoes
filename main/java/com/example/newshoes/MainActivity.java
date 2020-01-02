@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -47,7 +48,13 @@ public class MainActivity extends AppCompatActivity implements Serializable {
 
         Intent intent = new Intent(this, StartRun.class);
         intent.putExtra("Shoe", chosenShoe);
-        startActivity(intent);
+        if(chosenShoe != null) {
+            startActivity(intent);
+        }
+        else{
+            Toast toast = Toast.makeText(this, "Create a shoe before starting run", Toast.LENGTH_LONG);
+            toast.show();
+        }
     }
 
     public void deleteShoe(View view) {
