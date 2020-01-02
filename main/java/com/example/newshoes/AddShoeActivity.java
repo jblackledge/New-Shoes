@@ -35,6 +35,31 @@ public class AddShoeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_shoe);
+//        doStuff(this);
+
+        TextView shoeNameText = (TextView) (findViewById(R.id.shoe_name_text_field));
+        TextView shoeDistanceText = (TextView)(findViewById(R.id.desired_distance_text_field));
+
+        shoeDistanceText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    // code to execute when EditText loses focus
+                    hideKeyboard(v);
+                }
+            }
+        });
+
+
+        shoeNameText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    // code to execute when EditText loses focus
+                    hideKeyboard(v);
+                }
+            }
+        });
     }
 
     public void addShoe(View view) {
@@ -139,10 +164,22 @@ public class AddShoeActivity extends AppCompatActivity {
 
     public void hideKeyboard(View view) {
         InputMethodManager inputMethodManager =(InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
-        if(inputMethodManager.isActive()) {
-            inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
-        }
+        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
+
+//    public void doStuff(Activity activity) {
+//        TextView txtEdit = findViewById(R.id.edit_shoe_name_text_field);
+//
+//        txtEdit.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+//            @Override
+//            public void onFocusChange(View v, boolean hasFocus) {
+//                if (!hasFocus) {
+//                    // code to execute when EditText loses focus
+//                    hideKeyboard(v);
+//                }
+//            }
+//        });
+//    }
 //    public void doThing(View view) {
 //        hideKeyboard(this);
 //    }
