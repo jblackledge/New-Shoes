@@ -60,6 +60,11 @@ public class MainActivity extends AppCompatActivity implements Serializable {
     public void deleteShoe(View view) {
         Spinner spinner = findViewById(R.id.choose_shoe_spinner);
         Shoe chosenShoe = (Shoe)spinner.getSelectedItem();
+        if(chosenShoe == null)
+        {
+            Toast toast = Toast.makeText(this, "Nothing to delete", Toast.LENGTH_SHORT);
+            toast.show();
+        }
         AddShoeActivity.deleteShoe(chosenShoe);
         AddShoeActivity.saveSharedPreferencesShoeList(this, AddShoeActivity.getShoeList());
         showShoeList();
@@ -70,7 +75,15 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         Shoe chosenShoe = (Shoe)spinner.getSelectedItem();
         Intent intent = new Intent(this, EditShoe.class);
         intent.putExtra("Shoe", chosenShoe);
-        startActivity(intent);
+        if(chosenShoe != null)
+        {
+            startActivity(intent);
+        }
+        else
+        {
+            Toast toast = Toast.makeText(this, "Nothing to edit", Toast.LENGTH_SHORT);
+            toast.show();
+        }
     }
 
 }
