@@ -77,7 +77,7 @@ public class StartRun extends AppCompatActivity implements LocationListener {
     public void getStartLocation(View view) {
         Button pauseRun = findViewById(R.id.pause_run_button);
         Button stopRun = findViewById(R.id.stop_run_button);
-        Switch startRun = findViewById(R.id.track_run_switch);
+        Button startRun = findViewById(R.id.track_run_switch);
         pauseRun.setVisibility(View.VISIBLE);
         stopRun.setVisibility(View.VISIBLE);
         startRun.setVisibility(View.INVISIBLE);
