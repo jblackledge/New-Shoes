@@ -53,6 +53,7 @@ public class StartRun extends AppCompatActivity implements LocationListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_run);
 
+        totalMilesTraveled = 0.0;
         toastTally = 0;
 
         Intent intent = getIntent();
