@@ -121,6 +121,7 @@
         app:layout_constraintLeft_toRightOf="parent"
         android:layout_marginLeft="100dp"
         android:background="@color/colorAccent"
+        android:visibility="invisible"
         android:text="End Run"
         android:onClick="addMilesToShoe"/>
 
@@ -134,6 +135,7 @@
         app:layout_constraintLeft_toRightOf="@id/track_run_switch"
         android:layout_marginRight="100dp"
         android:background="@color/titleColor"
+        android:visibility="invisible"
         android:text="Pause Run"
         android:onClick="pauseRun"/>
 
