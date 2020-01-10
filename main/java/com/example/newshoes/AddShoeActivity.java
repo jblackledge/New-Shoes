@@ -37,7 +37,6 @@ public class AddShoeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_shoe);
-//        doStuff(this);
 
         TextView shoeNameText = (TextView) (findViewById(R.id.shoe_name_text_field));
         TextView shoeDistanceText = (TextView)(findViewById(R.id.desired_distance_text_field));
@@ -65,7 +64,6 @@ public class AddShoeActivity extends AppCompatActivity {
     }
 
     public void addShoe(View view) {
-        //addToShoeList();
         TextView shoeNameText = (TextView)(findViewById(R.id.shoe_name_text_field));
         CharSequence shoeNameSequence = shoeNameText.getText();
         String shoeName = shoeNameSequence.toString();
@@ -90,35 +88,12 @@ public class AddShoeActivity extends AppCompatActivity {
             Toast toast = Toast.makeText(this, "Please enter a valid number", Toast.LENGTH_LONG);
             toast.show();
         }
-
-
-
     }
-
-//    public void addToShoeList() {
-//        TextView shoeNameText = (TextView)(findViewById(R.id.shoe_name_text_field));
-//        String shoeName = (String)shoeNameText.getText();
-//
-//        TextView shoeDistanceText = (TextView)(findViewById(R.id.desired_distance_text_field));
-//        String shoeDistanceString = (String)shoeDistanceText.getText();
-//        Integer shoeDistance = Integer.valueOf(shoeDistanceString);
-//
-//        myShoe = new Shoe(shoeName, shoeDistance);
-//        shoeList.add(myShoe);
-//    }
 
     public static ArrayList<Shoe> getShoeList() {
 
         return shoeList;
     }
-
-//    public String getShoeName() {
-//        return myShoe.getName();
-//    }
-//
-//    public Integer getDistance() {
-//        return myShoe.getDesiredDistanceInMiles();
-//    }
 
     public static void saveSharedPreferencesShoeList(Context context, ArrayList<Shoe> shoeList) {
         SharedPreferences sharedPreferences =
@@ -162,48 +137,8 @@ public class AddShoeActivity extends AppCompatActivity {
         return shoeList;
     }
 
-//    public void exitKeyboard(View view) {
-//
-//        ViewParent viewParent = findViewById(R.id.parent);
-//        EditText editTextName = findViewById(R.id.edit_shoe_name_text_field);
-//        editTextName.setText("Yup");
-//        InputMethodManager inputMethodManager =(InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
-//        if(inputMethodManager.isAcceptingText())
-//        {
-//            hideKeyboard(view);
-//        }
-//    }
-
     public void hideKeyboard(View view) {
         InputMethodManager inputMethodManager =(InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
-
-//    public void doStuff(Activity activity) {
-//        TextView txtEdit = findViewById(R.id.edit_shoe_name_text_field);
-//
-//        txtEdit.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-//            @Override
-//            public void onFocusChange(View v, boolean hasFocus) {
-//                if (!hasFocus) {
-//                    // code to execute when EditText loses focus
-//                    hideKeyboard(v);
-//                }
-//            }
-//        });
-//    }
-//    public void doThing(View view) {
-//        hideKeyboard(this);
-//    }
-//
-//    public static void hideKeyboard(Activity activity) {
-//        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
-//        //Find the currently focused view, so we can grab the correct window token from it.
-//        View view = activity.getCurrentFocus();
-//        //If no view currently has focus, create a new one, just so we can grab a window token from it
-//        if (view == null) {
-//            view = new View(activity);
-//        }
-//        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-//    }
 }

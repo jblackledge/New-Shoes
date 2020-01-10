@@ -63,12 +63,10 @@ public class StartRun extends AppCompatActivity implements LocationListener {
         testingShoe.setText(shoe.toString());
 
         progressBar = findViewById(R.id.run_progress_bar);
-//        progressBar.setMax(shoe.getDesiredDistanceInMiles().intValue());
-//        progressBar.setProgress(shoe.getMileCount().intValue());
+
         progressBar.setMax(shoe.getDesiredDistanceInMiles().intValue() * METERS_IN_A_MILE);     //Changed progress bar to meters instead of miles
         progressBar.setProgress(shoe.getMeterCount().intValue());             //Changed progress bar to meters instead of miles
-//        progressBar.setMax(100);
-//        progressBar.setProgress(50);
+
         TextView progressBarDistanceText = findViewById(R.id.progress_bar_end_text);
         progressBarDistanceText.setText(shoe.getDesiredDistanceInMiles().toString());
 
@@ -106,8 +104,6 @@ public class StartRun extends AppCompatActivity implements LocationListener {
         }
         startLocation = locationManager.getLastKnownLocation(provider);
 
-//        startLocationText = findViewById(R.id.start_location_test);
-//        startLocationText.setText(startLocation.toString());
         trackRun(view);
     }
 
@@ -138,10 +134,7 @@ public class StartRun extends AppCompatActivity implements LocationListener {
 
         String provider = locationManager.getBestProvider(criteria, true);
 
-//        currentLocationText = findViewById(R.id.current_location_test);
-
         currentLocation = locationManager.getLastKnownLocation(provider);
-//        currentLocationText.setText(currentLocation.toString());
 
         trackedMiles.setText(String.format("%.2f", totalMilesTraveled));
 
@@ -163,7 +156,6 @@ public class StartRun extends AppCompatActivity implements LocationListener {
             }
         }
         AddShoeActivity.saveSharedPreferencesShoeList(this, myList);
-//        shoe.setMileCount(totalMilesTraveled);
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
@@ -249,7 +241,6 @@ public class StartRun extends AppCompatActivity implements LocationListener {
     public void onLocationChanged(Location location) {
         final Double VALUE_OF_MILE_IN_METERS = 0.000621371;
         trackedMiles = findViewById(R.id.mile_count_text);
-//        currentLocationText = findViewById(R.id.current_location_test);
 
         Criteria criteria = new Criteria();
         criteria.setAccuracy(Criteria.ACCURACY_FINE);
@@ -275,14 +266,10 @@ public class StartRun extends AppCompatActivity implements LocationListener {
             return;
         }
         currentLocation = locationManager.getLastKnownLocation(provider);
-//        currentLocationText.setText(currentLocation.toString());
 
         Float metersBetween = currentLocation.distanceTo(startLocation);
         Double metersBetweenDouble = metersBetween.doubleValue();
         Double milesBetween = metersBetweenDouble * VALUE_OF_MILE_IN_METERS;
-
-//        TextView distanceTo = findViewById(R.id.distance_to_test);
-//        distanceTo.setText(String.format("Distance to: %.6f", milesBetween));
 
         if(milesBetween < LOCATION_CHANGED_LIMITATION)
         {
@@ -292,7 +279,6 @@ public class StartRun extends AppCompatActivity implements LocationListener {
         totalMilesTraveled += milesBetween;
 
         trackedMiles.setText(String.format("%.2f", totalMilesTraveled));
-//        updateProgressBar(totalMilesTraveled.intValue());
         shoe.setMeterCount(metersBetweenDouble);
         updateProgressBar(shoe.getMeterCount().intValue());        //Changed progress bar to meters instead of miles
         startLocation = currentLocation;

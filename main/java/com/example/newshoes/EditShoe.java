@@ -68,8 +68,6 @@ public class EditShoe extends AppCompatActivity {
                 }
             }
         });
-//        TextView editDesiredDistanceField = findViewById(R.id.edit_desired_distance_text_field);
-//        System.out.println(editDesiredDistanceField.getText());
     }
 
     public void saveChanges(View view) {
@@ -136,38 +134,6 @@ public class EditShoe extends AppCompatActivity {
             desiredDistanceDouble = Double.valueOf(desiredDistanceFieldString);
             shoe.changeDesiredDistanceInMiles(desiredDistanceDouble);
         }
-
-//        if((editShoeNameString != null) && (desiredDistanceDouble != null)
-//                && (manuallyEnterMilesDouble != null))
-//        {
-//            shoe.changeShoeName(editShoeNameString);
-//            shoe.changeDesiredDistanceInMiles(desiredDistanceDouble);
-//            shoe.setMileCount(manuallyEnterMilesDouble);
-//        }
-//        else if((editShoeNameString != null) && (desiredDistanceDouble != null))
-//        {
-//            shoe.changeShoeName(editShoeNameString);
-//            shoe.changeDesiredDistanceInMiles(desiredDistanceDouble);
-//        }
-//        else if((editShoeNameString != null) && (manuallyEnterMilesDouble != null))
-//        {
-//            shoe.changeShoeName(editShoeNameString);
-//            shoe.setMileCount(manuallyEnterMilesDouble);
-//        }
-//        else if((editShoeNameString != null))
-//        {
-//            shoe.changeShoeName(editShoeNameString);
-//        }
-//        else if((desiredDistanceDouble != null)
-//                && (manuallyEnterMilesField != null))
-//        {
-//            shoe.changeDesiredDistanceInMiles(desiredDistanceDouble);
-//            shoe.setMileCount(manuallyEnterMilesDouble);
-//        }
-//        else if((manuallyEnterMilesField != null))
-//        {
-//            shoe.setMileCount(manuallyEnterMilesDouble);
-//        }
 
         AddShoeActivity.saveSharedPreferencesShoeList(this, AddShoeActivity.getShoeList());
         Intent intent = new Intent(this, MainActivity.class);
