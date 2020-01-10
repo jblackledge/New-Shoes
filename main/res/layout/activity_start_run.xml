@@ -38,6 +38,7 @@
         app:layout_constraintRight_toLeftOf="parent"
         app:layout_constraintLeft_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="25dp"
         android:text="Go!"
         android:background="@color/progressBarTest"
         android:switchMinWidth="100dp"
