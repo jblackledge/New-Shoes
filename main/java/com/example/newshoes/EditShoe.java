@@ -131,6 +131,11 @@ public class EditShoe extends AppCompatActivity {
             shoe.setMileCount(manuallyEnterMilesDouble);
             shoe.setMeterCount(manuallyEnterMilesDouble * METERS_IN_A_MILE);
         }
+        else if(!editDesiredDistanceField.getText().toString().equals(""))
+        {
+            desiredDistanceDouble = Double.valueOf(desiredDistanceFieldString);
+            shoe.changeDesiredDistanceInMiles(desiredDistanceDouble);
+        }
 
 //        if((editShoeNameString != null) && (desiredDistanceDouble != null)
 //                && (manuallyEnterMilesDouble != null))
