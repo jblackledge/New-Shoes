@@ -7,6 +7,7 @@ import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewParent;
@@ -37,6 +38,9 @@ public class AddShoeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_shoe);
+
+        //keep the screen in portrait view at all times. This prevents the activity from resetting.
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         TextView shoeNameText = (TextView) (findViewById(R.id.shoe_name_text_field));
         TextView shoeDistanceText = (TextView)(findViewById(R.id.desired_distance_text_field));
