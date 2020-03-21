@@ -6,10 +6,13 @@ import java.util.ArrayList;
 public class Shoe implements Serializable, Comparable<Shoe> {
     private String shoeName;
 
+    //the distance, set by the user, to travel in the Shoe before they want to get a new pair of shoes
     private Double desiredDistanceInMiles;
 
+    //total miles traveled by this Shoe object
     private Double mileCount;
 
+    //total meters traveled by this Shoe object, used for the progress bar in the StartRun activity
     private Double meterCount;
 
     public Shoe(String shoeName, Double distance) {
@@ -55,6 +58,11 @@ public class Shoe implements Serializable, Comparable<Shoe> {
         return String.format("%s - Current Mile Count: %.2f", this.shoeName, this.getMileCount());
     }
 
+    /**
+     * Method used to implement a manner to sort Shoe objects using the Collections class. Here, we
+     * are sorting by the ShoeName, in alphabetical order, and for some reason, capital letters
+     * first
+     */
     @Override
     public int compareTo(Shoe o) {
         return this.shoeName.compareTo(o.shoeName);
