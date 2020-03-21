@@ -19,6 +19,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements Serializable {
+    //variable used to track whether a shoe was successfully restored from deletion
     boolean isRestored = false;
 
     @Override
@@ -30,13 +31,18 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         Button deleteShoeButton = findViewById(R.id.delete_shoe_button);
+        //Here we create a long click listener, upon a long click, we restore a previously deleted
+        //shoe and inform the user via Toast, that the she was restored successfully
         deleteShoeButton.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View view) {
                     if(!AddShoeActivity.getDeletedShoeStack().empty()) {
                         AddShoeActivity.addBackToList();
+
                         isRestored = true;
+                        //calls method to save shoe list again
                         saveSharedPrefAfterShoeReturnedFromDeletion();
+
                         Context context = getApplicationContext();
                         CharSequence toastText = "Shoe restored from deletion";
                         int duration = Toast.LENGTH_LONG;
@@ -134,6 +140,12 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         AddShoeActivity.deleteShoe(chosenShoe);
         AddShoeActivity.saveSharedPreferencesShoeList(this, AddShoeActivity.getShoeList());
         showShoeList();
+
+        Context context = getApplicationContext();
+        CharSequence toastText = "Shoe deleted. Mistake? Hold Delete button to undo";
+        int duration = Toast.LENGTH_LONG;
+        Toast toast = Toast.makeText(context, toastText, duration);
+        toast.show();
     }
 
     /**
