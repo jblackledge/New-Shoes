@@ -3,11 +3,13 @@ package com.example.newshoes;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ListActivity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -25,6 +27,19 @@ public class MainActivity extends AppCompatActivity implements Serializable {
 
         //keep the screen in portrait view at all times. This prevents the activity from resetting.
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        Button deleteShoeButton = findViewById(R.id.delete_shoe_button);
+        deleteShoeButton.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    Context context = getApplicationContext();
+                    CharSequence toastText = "Long clicked";
+                    int duration = Toast.LENGTH_LONG;
+                    Toast toast = Toast.makeText(context, toastText, duration);
+                    toast.show();
+                    return true;
+                }
+            });
 
         showShoeList();
     }
