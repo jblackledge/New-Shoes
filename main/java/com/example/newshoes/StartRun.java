@@ -64,6 +64,10 @@ public class StartRun extends AppCompatActivity implements LocationListener {
     //the selected pair of shoes
     private ProgressBar progressBar;
 
+    //used to track when run is paused to allow us to change the attributes and features of the
+    //Pause Run button
+    private boolean isPaused;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -377,16 +381,70 @@ public class StartRun extends AppCompatActivity implements LocationListener {
      * been paused, via a Toast
      */
     public void pauseRun(View view) {
+        if(isPaused)
+        {
+            continueRun();
+        }
+        else {
+            LocationManager locationManager =
+                    (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
+            locationManager.removeUpdates(this);
+
+            Context context = getApplicationContext();
+            CharSequence toastText = "Run paused";
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(context, toastText, duration);
+            toast.show();
+
+            setRunPausedStatus(true);
+            Button pauseRunButton = findViewById(R.id.pause_run_button);
+            pauseRunButton.setText("Continue Run");
+        }
+    }
+
+    public void continueRun() {
+        Criteria criteria = new Criteria();
+        criteria.setAccuracy(Criteria.ACCURACY_FINE);
+
         LocationManager locationManager =
                 (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
-        locationManager.removeUpdates(this);
+        String provider = locationManager.getBestProvider(criteria, true);
+
+        //if we dont't have permission from the user, we're done here
+        if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED &&
+                checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) !=
+                        PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    Activity#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for Activity#requestPermissions for more details.
+            trackedMiles.setText("Lol nope");
+            return;
+        }
+
+        //creates a location listener to update onLocationChanged method upon meeting the specified
+        //time and/or distance criteria
+        locationManager.requestLocationUpdates(provider, 100, 2, this);
 
         Context context = getApplicationContext();
-        CharSequence toastText = "Run paused";
+        CharSequence toastText = "Continuing run";
         int duration = Toast.LENGTH_SHORT;
         Toast toast = Toast.makeText(context, toastText, duration);
         toast.show();
+
+        setRunPausedStatus(false);
+        Button pauseRunButton = findViewById(R.id.pause_run_button);
+        pauseRunButton.setText("Pause Run");
+    }
+
+    public void setRunPausedStatus(boolean isPaused){
+        this.isPaused = isPaused;
     }
 
     @Override
