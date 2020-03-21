@@ -16,7 +16,7 @@ public class EditShoe extends AppCompatActivity {
 
     private Shoe shoe;
 
-    private final Integer METERS_IN_A_MILE = 1609;
+    private final Integer METERS_IN_A_MILE = 1609;    //constant value for meters to mile conversion
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,11 +24,16 @@ public class EditShoe extends AppCompatActivity {
         setContentView(R.layout.activity_edit_shoe);
 
         Intent intent = getIntent();
+        //gets the object that was placed in the intent from the main activity
         shoe = (Shoe) intent.getSerializableExtra("Shoe");
 
         ArrayList<Shoe> myList = AddShoeActivity.getShoeList();
+        //Since Java is pass by value, compares the toStrings to find the Shoe object in the
+        //ArrayList that has the same value as the one passed in
         for(Shoe shoe : myList)
         {
+            //once found, assigns the object from the ArrayList to the private class member variable
+            //and then breaks the for loop to prevent an error
             if(this.shoe.toString().equals(shoe.toString()))
             {
                 this.shoe = shoe;
@@ -39,6 +44,8 @@ public class EditShoe extends AppCompatActivity {
         TextView editDesiredDistanceField = (TextView) findViewById(R.id.edit_desired_distance_text_field);
         TextView manuallyEnterMilesField = (TextView) findViewById(R.id.manually_enter_miles_text_field);
 
+        //listener method to detect when the user clicks outsid of the text field. When they do,
+        //exits the keyboard
         editShoeNameField.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -49,6 +56,8 @@ public class EditShoe extends AppCompatActivity {
             }
         });
 
+        //listener method to detect when the user clicks outsid of the text field. When they do,
+        //exits the keyboard
         editDesiredDistanceField.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -59,6 +68,8 @@ public class EditShoe extends AppCompatActivity {
             }
         });
 
+        //listener method to detect when the user clicks outsid of the text field. When they do,
+        //exits the keyboard
         manuallyEnterMilesField.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -70,6 +81,9 @@ public class EditShoe extends AppCompatActivity {
         });
     }
 
+    /**
+     * Method used to save the changes the user makes to the given Shoe
+     */
     public void saveChanges(View view) {
         TextView editShoeNameField = findViewById(R.id.edit_shoe_name_text_field);
         CharSequence editShoeNameCharSeq = editShoeNameField.getText();
@@ -86,6 +100,7 @@ public class EditShoe extends AppCompatActivity {
         String manuallyEnterMilesString = manuallyEnterMilesFieldCharSeq.toString();
         Double manuallyEnterMilesDouble = 0.0;
 
+        //Executed when all three text fields are not empty
         if((!editShoeNameField.getText().toString().equals("")) && (!editDesiredDistanceField.getText().toString().equals(""))
                 && (!manuallyEnterMilesField.getText().toString().equals("")))
         {
@@ -96,6 +111,8 @@ public class EditShoe extends AppCompatActivity {
             shoe.setMileCount(manuallyEnterMilesDouble);
             shoe.setMeterCount(manuallyEnterMilesDouble * METERS_IN_A_MILE);
         }
+
+        //Executed when ShoeName and DesiredDistance text fields are not empty
         else if((!editShoeNameField.getText().toString().equals("")) &&
                 (!editDesiredDistanceField.getText().toString().equals("")))
         {
@@ -103,6 +120,8 @@ public class EditShoe extends AppCompatActivity {
             desiredDistanceDouble = Double.valueOf(desiredDistanceFieldString);
             shoe.changeDesiredDistanceInMiles(desiredDistanceDouble);
         }
+
+        //Executed when ShoeName and ManuallyEnterMiles fields are not empty
         else if(!editShoeNameField.getText().toString().equals("") && (!manuallyEnterMilesField.getText().toString().equals("")))
         {
             shoe.changeShoeName(editShoeNameString);
@@ -110,10 +129,14 @@ public class EditShoe extends AppCompatActivity {
             shoe.setMileCount(manuallyEnterMilesDouble);
             shoe.setMeterCount(manuallyEnterMilesDouble * METERS_IN_A_MILE);
         }
+
+        //Executed when only ShoeName is not empty
         else if((!editShoeNameField.getText().toString().equals("")))
         {
             shoe.changeShoeName(editShoeNameString);
         }
+
+        //Executed when DesiredDistance and ManuallyEnterMiles fields are not empty
         else if((!editDesiredDistanceField.getText().toString().equals("")
                 && (!manuallyEnterMilesField.getText().toString().equals(""))))
         {
@@ -123,12 +146,16 @@ public class EditShoe extends AppCompatActivity {
             shoe.setMileCount(manuallyEnterMilesDouble);
             shoe.setMeterCount(manuallyEnterMilesDouble * METERS_IN_A_MILE);
         }
+
+        //Executed when only ManuallyEnterMiles text field is not empty
         else if((!manuallyEnterMilesField.getText().toString().equals("")))
         {
             manuallyEnterMilesDouble = Double.valueOf(manuallyEnterMilesString);
             shoe.setMileCount(manuallyEnterMilesDouble);
             shoe.setMeterCount(manuallyEnterMilesDouble * METERS_IN_A_MILE);
         }
+
+        //Executed when only DesiredDistance field is not empty
         else if(!editDesiredDistanceField.getText().toString().equals(""))
         {
             desiredDistanceDouble = Double.valueOf(desiredDistanceFieldString);
@@ -140,6 +167,9 @@ public class EditShoe extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /**
+     * Method used to hide the keyboard when the user clicks outside of the text field
+     */
     public void hideKeyboard(View view) {
         InputMethodManager inputMethodManager =(InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
