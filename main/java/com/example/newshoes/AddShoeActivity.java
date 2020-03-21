@@ -25,12 +25,15 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Stack;
 
 import static java.util.Collections.*;
 
 public class AddShoeActivity extends AppCompatActivity {
 
     private Shoe myShoe;
+
+    private static Stack<Shoe> deletedShoeStack = new Stack<>();
 
     private static ArrayList<Shoe> shoeList = new ArrayList<>();
 
@@ -104,8 +107,11 @@ public class AddShoeActivity extends AppCompatActivity {
     }
 
     public static ArrayList<Shoe> getShoeList() {
-
         return shoeList;
+    }
+
+    public static Stack<Shoe> getDeletedShoeStack() {
+        return deletedShoeStack;
     }
 
     /**
@@ -161,6 +167,9 @@ public class AddShoeActivity extends AppCompatActivity {
         // ArrayList. If so, we remove the Shoe object from the ArrayList
         for(Shoe myShoe : shoeList) {
             if(myShoe.toString().equals(shoe.toString())) {
+                //push deleted shoe to stack to allow user to undo deletion in case it was deleted
+                //by mistake
+                deletedShoeStack.push(myShoe);
                 shoeList.remove(myShoe);
                 break;  //once the correct Shoe object is found, we break out of the loop
             }
@@ -174,5 +183,11 @@ public class AddShoeActivity extends AppCompatActivity {
     public void hideKeyboard(View view) {
         InputMethodManager inputMethodManager =(InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
+    public static ArrayList<Shoe> addBackToList() {
+        shoeList.add(deletedShoeStack.pop());
+        Collections.sort(shoeList);
+        return shoeList;
     }
 }
