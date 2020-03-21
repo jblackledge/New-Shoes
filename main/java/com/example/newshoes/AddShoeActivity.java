@@ -41,6 +41,8 @@ public class AddShoeActivity extends AppCompatActivity {
         TextView shoeNameText = (TextView) (findViewById(R.id.shoe_name_text_field));
         TextView shoeDistanceText = (TextView)(findViewById(R.id.desired_distance_text_field));
 
+        //checks if the user clicks any area outside of the text field, it they do, exits the
+        //keyboard
         shoeDistanceText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -51,7 +53,8 @@ public class AddShoeActivity extends AppCompatActivity {
             }
         });
 
-
+        //checks if the user clicks any area outside of the text field, it they do, exits the
+        //keyboard
         shoeNameText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -63,6 +66,9 @@ public class AddShoeActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Method to add a new Shoe object to the ArrayList of Shoe's
+     */
     public void addShoe(View view) {
         TextView shoeNameText = (TextView)(findViewById(R.id.shoe_name_text_field));
         CharSequence shoeNameSequence = shoeNameText.getText();
@@ -73,6 +79,7 @@ public class AddShoeActivity extends AppCompatActivity {
         String shoeDistanceString = shoeDistanceSequence.toString();
         Double shoeDistance = 0.0;
 
+        //if the user enters a valid number we add the shoe
         try{
             shoeDistance = Double.valueOf(shoeDistanceString);
             myShoe = new Shoe(shoeName, shoeDistance);
@@ -84,6 +91,8 @@ public class AddShoeActivity extends AppCompatActivity {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         }
+        //if the user doesn't enter number, we catch the exception thrown, and inform the user via
+        // a toast, to enter a valid number
         catch (Exception e){
             Toast toast = Toast.makeText(this, "Please enter a valid number", Toast.LENGTH_LONG);
             toast.show();
@@ -95,17 +104,26 @@ public class AddShoeActivity extends AppCompatActivity {
         return shoeList;
     }
 
+    /**
+     * Method to save the ArrayList of Shoe objects to shared preferences. This allows the user to
+     * exit the app or even turn off their device and still have all of their shoes saved
+     */
     public static void saveSharedPreferencesShoeList(Context context, ArrayList<Shoe> shoeList) {
         SharedPreferences sharedPreferences =
                 context.getSharedPreferences("ShoeList", context.MODE_PRIVATE);
 
         SharedPreferences.Editor preferencesEditor = sharedPreferences.edit();
+        //Here we make our ArrayList object into a Gson object, then turns it into a Json object
         Gson gson = new Gson();
         String json = gson.toJson(shoeList);
+        //Saves the Json object in shared preferences
         preferencesEditor.putString("shoe", json);
         preferencesEditor.commit();
     }
 
+    /**
+     * Method to load the saved ArrayList object of Shoes from shared preferences
+     */
     public static ArrayList<Shoe> loadSharedPreferencesShoeList(Context context) {
         shoeList = new ArrayList<>();
         SharedPreferences sharedPreferences =
@@ -114,10 +132,13 @@ public class AddShoeActivity extends AppCompatActivity {
         Gson gson = new Gson();
         String json = sharedPreferences.getString("shoe", "");
 
+        //if there is no json file saved in shared preferences, we just create an empty ArrayList
         if(json.isEmpty())
         {
             shoeList = new ArrayList<>();
         }
+        //otherwise, we assign the json file saved in shared prefences, to a gson object, then assign
+        //the gson object to the ArrayList
         else
         {
             Type type = new TypeToken<ArrayList<Shoe>>() {}.getType();
@@ -126,17 +147,26 @@ public class AddShoeActivity extends AppCompatActivity {
         return shoeList;
     }
 
+    /**
+     * Method to delete a Shoe object from the ArrayList
+     */
     public static ArrayList<Shoe> deleteShoe(Shoe shoe) {
 
+        //Since Java is a pass by value language, we have to compare whether the toString of the
+        //passed in Shoe object is equal to the toString of one of the Shoe objects in the
+        // ArrayList. If so, we remove the Shoe object from the ArrayList
         for(Shoe myShoe : shoeList) {
             if(myShoe.toString().equals(shoe.toString())) {
                 shoeList.remove(myShoe);
-                break;
+                break;  //once the correct Shoe object is found, we break out of the loop
             }
         }
         return shoeList;
     }
 
+    /**
+     * Method used to exit the keyboard when the user clicks outside of a text field
+     */
     public void hideKeyboard(View view) {
         InputMethodManager inputMethodManager =(InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
