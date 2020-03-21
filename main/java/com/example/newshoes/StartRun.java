@@ -232,7 +232,7 @@ public class StartRun extends AppCompatActivity implements LocationListener {
                 // sees the explanation, try again to request the permission.
                 new AlertDialog.Builder(this)
                         .setTitle("Location Permission")
-                        .setMessage("Can we have permission?")
+                        .setMessage("New Shoes needs permission to access your location")
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {

@@ -186,6 +186,10 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         }
     }
 
+    /**
+     * Method to check if we have permission from the user to access their location. If not we
+     * prompt them with a dialogue box and request permission from them
+     */
     public boolean checkLocationPermission() {
         final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
 
@@ -202,7 +206,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
                 // sees the explanation, try again to request the permission.
                 new AlertDialog.Builder(this)
                         .setTitle("Location Permission")
-                        .setMessage("Can we have permission?")
+                        .setMessage("New Shoes needs permission to access your location")
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
