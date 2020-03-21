@@ -19,8 +19,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements Serializable {
-    //variable used to track whether a shoe was successfully restored from deletion
-    boolean isRestored = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +37,6 @@ public class MainActivity extends AppCompatActivity implements Serializable {
                     if(!AddShoeActivity.getDeletedShoeStack().empty()) {
                         AddShoeActivity.addBackToList();
 
-                        isRestored = true;
                         //calls method to save shoe list again
                         saveSharedPrefAfterShoeReturnedFromDeletion();
 
@@ -64,10 +61,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
      * Method that saves the shoe list after user long clicks delete to undo deletion
      */
     public void saveSharedPrefAfterShoeReturnedFromDeletion() {
-        if(isRestored) {
-            AddShoeActivity.saveSharedPreferencesShoeList(this, AddShoeActivity.getShoeList());
-        }
-        isRestored = false;
+        AddShoeActivity.saveSharedPreferencesShoeList(this, AddShoeActivity.getShoeList());
     }
 
     /**
