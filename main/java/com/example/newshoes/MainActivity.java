@@ -19,6 +19,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements Serializable {
+    boolean isRestored = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +35,10 @@ public class MainActivity extends AppCompatActivity implements Serializable {
                 public boolean onLongClick(View view) {
                     if(!AddShoeActivity.getDeletedShoeStack().empty()) {
                         AddShoeActivity.addBackToList();
+                        isRestored = true;
+                        saveSharedPrefAfterShoeReturnedFromDeletion();
                         Context context = getApplicationContext();
-                        CharSequence toastText = "Long clicked";
+                        CharSequence toastText = "Shoe restored from deletion";
                         int duration = Toast.LENGTH_LONG;
                         Toast toast = Toast.makeText(context, toastText, duration);
                         toast.show();
@@ -49,6 +52,16 @@ public class MainActivity extends AppCompatActivity implements Serializable {
             });
 
         showShoeList();
+    }
+
+    /**
+     * Method that saves the shoe list after user long clicks delete to undo deletion
+     */
+    public void saveSharedPrefAfterShoeReturnedFromDeletion() {
+        if(isRestored) {
+            AddShoeActivity.saveSharedPreferencesShoeList(this, AddShoeActivity.getShoeList());
+        }
+        isRestored = false;
     }
 
     /**
