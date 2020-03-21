@@ -32,12 +32,19 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         deleteShoeButton.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View view) {
-                    Context context = getApplicationContext();
-                    CharSequence toastText = "Long clicked";
-                    int duration = Toast.LENGTH_LONG;
-                    Toast toast = Toast.makeText(context, toastText, duration);
-                    toast.show();
-                    return true;
+                    if(!AddShoeActivity.getDeletedShoeStack().empty()) {
+                        AddShoeActivity.addBackToList();
+                        Context context = getApplicationContext();
+                        CharSequence toastText = "Long clicked";
+                        int duration = Toast.LENGTH_LONG;
+                        Toast toast = Toast.makeText(context, toastText, duration);
+                        toast.show();
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 }
             });
 
