@@ -153,15 +153,17 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         }
         //If there is a shoe, we delete it, update our shared preferences list, and then update the
         //spinner
-        AddShoeActivity.deleteShoe(chosenShoe);
-        AddShoeActivity.saveSharedPreferencesShoeList(this, AddShoeActivity.getShoeList());
-        showShoeList();
+        else {
+            AddShoeActivity.deleteShoe(chosenShoe);
+            AddShoeActivity.saveSharedPreferencesShoeList(this, AddShoeActivity.getShoeList());
+            showShoeList();
 
-        Context context = getApplicationContext();
-        CharSequence toastText = "Shoe deleted. Mistake? Hold Delete button to undo";
-        int duration = Toast.LENGTH_LONG;
-        Toast toast = Toast.makeText(context, toastText, duration);
-        toast.show();
+            Context context = getApplicationContext();
+            CharSequence toastText = "Shoe deleted. Mistake? Hold Delete button to undo";
+            int duration = Toast.LENGTH_LONG;
+            Toast toast = Toast.makeText(context, toastText, duration);
+            toast.show();
+        }
     }
 
     /**
