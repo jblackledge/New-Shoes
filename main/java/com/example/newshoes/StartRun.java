@@ -182,7 +182,7 @@ public class StartRun extends AppCompatActivity implements LocationListener {
 
         //creates a location listener to update onLocationChanged method upon meeting the specified
         //time and/or distance criteria
-        locationManager.requestLocationUpdates(provider, 100, 2, this);
+        locationManager.requestLocationUpdates(provider, 1000, 2, this);
     }
 
     //Method to add miles to the current Shoe object whenever the End Run button is pressed
@@ -279,7 +279,7 @@ public class StartRun extends AppCompatActivity implements LocationListener {
                             == PackageManager.PERMISSION_GRANTED) {
 
                         //Request location updates:
-                        locationManager.requestLocationUpdates(provider, 400, 1, this);
+                        locationManager.requestLocationUpdates(provider, 1000, 2, this);
                     }
 
                 } else {
@@ -433,7 +433,7 @@ public class StartRun extends AppCompatActivity implements LocationListener {
 
         //creates a location listener to update onLocationChanged method upon meeting the specified
         //time and/or distance criteria
-        locationManager.requestLocationUpdates(provider, 100, 2, this);
+        locationManager.requestLocationUpdates(provider, 1000, 2, this);
 
         Context context = getApplicationContext();
         CharSequence toastText = "Continuing run";
