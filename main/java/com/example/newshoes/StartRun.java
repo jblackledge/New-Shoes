@@ -327,6 +327,8 @@ public class StartRun extends AppCompatActivity implements LocationListener {
         //update currentLocation
         currentLocation = locationManager.getLastKnownLocation(provider);
 
+        //Here we place a try/catch block to prevent a NullPointerException that was causing the app
+        //to crash
         try{
             //calculate the meters between our currentLocation and our startLocation
             Float metersBetween = currentLocation.distanceTo(startLocation);
@@ -345,7 +347,6 @@ public class StartRun extends AppCompatActivity implements LocationListener {
             }
 
             totalMilesTraveled += milesBetween;
-
             trackedMiles.setText(String.format("%.2f", totalMilesTraveled));
             shoe.setMeterCount(metersBetweenDouble);
         }
@@ -353,7 +354,6 @@ public class StartRun extends AppCompatActivity implements LocationListener {
             Toast toast = Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG);
             toast.show();
         }
-
 
         updateProgressBar(shoe.getMeterCount().intValue());        //Changed progress bar to meters instead of miles
         //set the value of startLocation to currentLocation. This allows us to only count recent
