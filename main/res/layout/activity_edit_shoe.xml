@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="@string/edit_shoe_welcome"
-        android:textSize="52dp"
+        android:textSize="52sp"
         android:textStyle="bold"
         android:textColor="@color/titleColorTest"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -29,10 +29,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
         android:text="@string/edit_shoe_name_text"
         android:textColor="@color/titleColorTest"
-        android:textSize="30dp"
+        android:textSize="30sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/edit_shoe_welcome_text"/>
 
@@ -41,22 +41,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/titleColorTest"
-        android:textSize="25dp"
+        android:textSize="25sp"
         android:text=""
         android:width="400dp"
-        android:hint="Ex: Nike, Reebok, Adidas"
+        android:hint="@string/ex_nike_reebok_adidas"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edit_shoe_name_text" />
+        app:layout_constraintTop_toBottomOf="@id/edit_shoe_name_text"
+        android:inputType="textAutoComplete"
+        android:importantForAutofill="no" />
 
     <TextView
         android:id="@+id/edit_desired_distance_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
         android:text="@string/edit_desired_distance_text"
         android:textColor="@color/titleColorTest"
-        android:textSize="30dp"
+        android:textSize="30sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/edit_shoe_name_text_field" />
 
@@ -65,23 +67,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/titleColorTest"
-        android:textSize="25dp"
+        android:textSize="25sp"
         android:text=""
         android:width="400dp"
         android:inputType="numberDecimal"
-        android:hint="Recommended 500-800 mi"
+        android:hint="@string/recommended_300_500_mi"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edit_desired_distance_text" />
+        app:layout_constraintTop_toBottomOf="@id/edit_desired_distance_text"
+        android:importantForAutofill="no" />
 
     <TextView
         android:id="@+id/manually_enter_miles_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
         android:text="@string/manually_enter_miles"
         android:textColor="@color/titleColorTest"
-        android:textSize="30dp"
+        android:textSize="30sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/edit_desired_distance_text_field" />
 
@@ -90,13 +93,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/titleColorTest"
-        android:textSize="25dp"
+        android:textSize="25sp"
         android:text=""
         android:width="400dp"
         android:inputType="numberDecimal"
-        android:hint="Its cool, we all forget things"
+        android:hint="@string/its_cool_we_all_forget_things"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/manually_enter_miles_text" />
+        app:layout_constraintTop_toBottomOf="@id/manually_enter_miles_text"
+        android:importantForAutofill="no" />
 
     <Button
         android:id="@+id/add_shoe_button"
