@@ -15,11 +15,15 @@ public class Shoe implements Serializable, Comparable<Shoe> {
     //total meters traveled by this Shoe object, used for the progress bar in the StartRun activity
     private Double meterCount;
 
+    //Number of runs a user has made after reaching their set goal
+    private Integer runsSinceGoalReached;
+
     public Shoe(String shoeName, Double distance) {
         this.shoeName = shoeName;
         this.desiredDistanceInMiles = distance;
         mileCount = 0.00;
         meterCount = 0.00;
+        runsSinceGoalReached = 0;
     }
 
     public String getName() {
@@ -65,6 +69,14 @@ public class Shoe implements Serializable, Comparable<Shoe> {
         else {
             return false;
         }
+    }
+
+    public void incrementRunsSinceGoalReached() {
+        ++runsSinceGoalReached;
+    }
+
+    public int getRunsSinceGoalReached() {
+        return runsSinceGoalReached;
     }
 
     public String toString() {

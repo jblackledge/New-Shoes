@@ -18,4 +18,5 @@
     <string name="edit_shoe_name_text">Edit Shoe Name Text:</string>
     <string name="manually_enter_miles">Manually Enter Miles:</string>
     <string name="progress_bar_start_text">0</string>
+    <string name="shoe_emoji">\uD83D\uDC5F;</string>
 </resources>
