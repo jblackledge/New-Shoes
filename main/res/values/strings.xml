@@ -23,4 +23,7 @@
     <string name="ex_nike_reebok_adidas">Ex: Nike, Reebok, Adidas</string>
     <string name="its_cool_we_all_forget_things">Its cool, we all forget things</string>
     <string name="ex_nike_reebok_adidas">Ex: Nike, Reebok, Adidas</string>
+    <string name="go">Go!</string>
+    <string name="end_run">End Run</string>
+    <string name="pause_run">Pause Run</string>
 </resources>
