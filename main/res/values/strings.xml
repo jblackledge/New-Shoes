@@ -19,4 +19,6 @@
     <string name="manually_enter_miles">Manually Enter Miles:</string>
     <string name="progress_bar_start_text">0</string>
     <string name="shoe_emoji">\uD83D\uDC5F;</string>
+    <string name="recommended_300_500_mi">Recommended 300-500 mi</string>
+    <string name="ex_nike_reebok_adidas">Ex: Nike, Reebok, Adidas</string>
 </resources>
