@@ -54,6 +54,19 @@ public class Shoe implements Serializable, Comparable<Shoe> {
         this.desiredDistanceInMiles = desiredDistanceInMiles;
     }
 
+    /**
+     * Method to check if the user has reached their mile goal for the given pair of Shoes
+     */
+    public boolean hasReachedGoal() {
+        if(mileCount >= desiredDistanceInMiles)
+        {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
     public String toString() {
         return String.format("%s - Current Mile Count: %.2f", this.shoeName, this.getMileCount());
     }
