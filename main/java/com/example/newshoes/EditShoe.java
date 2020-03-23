@@ -115,6 +115,8 @@ public class EditShoe extends AppCompatActivity {
             shoe.setMileCount(manuallyEnterMilesDouble);
             shoe.setMeterCount(manuallyEnterMilesDouble * METERS_IN_A_MILE);
 
+            //Placed a shoe emoji next to the Shoe's name if the shoe has reached the goal set by
+            //the user
             if(shoe.hasReachedGoal())
             {
                 if (shoe.getRunsSinceGoalReached() == 0) {
@@ -141,6 +143,8 @@ public class EditShoe extends AppCompatActivity {
             shoe.setMileCount(manuallyEnterMilesDouble);
             shoe.setMeterCount(manuallyEnterMilesDouble * METERS_IN_A_MILE);
 
+            //Placed a shoe emoji next to the Shoe's name if the shoe has reached the goal set by
+            //the user
             if(shoe.hasReachedGoal())
             {
                 if (shoe.getRunsSinceGoalReached() == 0) {
@@ -166,6 +170,8 @@ public class EditShoe extends AppCompatActivity {
             shoe.setMileCount(manuallyEnterMilesDouble);
             shoe.setMeterCount(manuallyEnterMilesDouble * METERS_IN_A_MILE);
 
+            //Placed a shoe emoji next to the Shoe's name if the shoe has reached the goal set by
+            //the user
             if(shoe.hasReachedGoal())
             {
                 if (shoe.getRunsSinceGoalReached() == 0) {
@@ -182,6 +188,8 @@ public class EditShoe extends AppCompatActivity {
             shoe.setMileCount(manuallyEnterMilesDouble);
             shoe.setMeterCount(manuallyEnterMilesDouble * METERS_IN_A_MILE);
 
+            //Placed a shoe emoji next to the Shoe's name if the shoe has reached the goal set by
+            //the user
             if(shoe.hasReachedGoal())
             {
                 if (shoe.getRunsSinceGoalReached() == 0) {
