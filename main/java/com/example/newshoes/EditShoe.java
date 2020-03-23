@@ -114,6 +114,14 @@ public class EditShoe extends AppCompatActivity {
             manuallyEnterMilesDouble = Double.valueOf(manuallyEnterMilesString);
             shoe.setMileCount(manuallyEnterMilesDouble);
             shoe.setMeterCount(manuallyEnterMilesDouble * METERS_IN_A_MILE);
+
+            if(shoe.hasReachedGoal())
+            {
+                if (shoe.getRunsSinceGoalReached() == 0) {
+                    shoe.changeShoeName("👟" + shoe.getName());
+                    shoe.incrementRunsSinceGoalReached();
+                }
+            }
         }
 
         //Executed when ShoeName and DesiredDistance text fields are not empty
@@ -132,6 +140,14 @@ public class EditShoe extends AppCompatActivity {
             manuallyEnterMilesDouble = Double.valueOf(manuallyEnterMilesString);
             shoe.setMileCount(manuallyEnterMilesDouble);
             shoe.setMeterCount(manuallyEnterMilesDouble * METERS_IN_A_MILE);
+
+            if(shoe.hasReachedGoal())
+            {
+                if (shoe.getRunsSinceGoalReached() == 0) {
+                    shoe.changeShoeName("👟" + shoe.getName());
+                    shoe.incrementRunsSinceGoalReached();
+                }
+            }
         }
 
         //Executed when only ShoeName is not empty
@@ -149,6 +165,14 @@ public class EditShoe extends AppCompatActivity {
             manuallyEnterMilesDouble = Double.valueOf(manuallyEnterMilesString);
             shoe.setMileCount(manuallyEnterMilesDouble);
             shoe.setMeterCount(manuallyEnterMilesDouble * METERS_IN_A_MILE);
+
+            if(shoe.hasReachedGoal())
+            {
+                if (shoe.getRunsSinceGoalReached() == 0) {
+                    shoe.changeShoeName("👟" + shoe.getName());
+                    shoe.incrementRunsSinceGoalReached();
+                }
+            }
         }
 
         //Executed when only ManuallyEnterMiles text field is not empty
@@ -157,6 +181,14 @@ public class EditShoe extends AppCompatActivity {
             manuallyEnterMilesDouble = Double.valueOf(manuallyEnterMilesString);
             shoe.setMileCount(manuallyEnterMilesDouble);
             shoe.setMeterCount(manuallyEnterMilesDouble * METERS_IN_A_MILE);
+
+            if(shoe.hasReachedGoal())
+            {
+                if (shoe.getRunsSinceGoalReached() == 0) {
+                    shoe.changeShoeName("👟" + shoe.getName());
+                    shoe.incrementRunsSinceGoalReached();
+                }
+            }
         }
 
         //Executed when only DesiredDistance field is not empty
