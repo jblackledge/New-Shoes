@@ -4,8 +4,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.emoji.bundled.BundledEmojiCompatConfig;
-import androidx.emoji.text.EmojiCompat;
 import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -30,9 +28,6 @@ public class MainActivity extends AppCompatActivity implements Serializable {
 
         //keep the screen in portrait view at all times. This prevents the activity from resetting.
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
-        EmojiCompat.Config config = new BundledEmojiCompatConfig(this);
-        EmojiCompat.init(config);
 
         //if we dont't have permission from the user, we're done here
         if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION)
