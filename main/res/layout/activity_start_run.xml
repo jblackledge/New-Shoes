@@ -121,5 +121,5 @@
         android:layout_marginEnd="25dp"
         android:textSize="20sp"
         android:textColor="@color/progressBarText"/>
-    
+
 </androidx.constraintlayout.widget.ConstraintLayout>
