@@ -4,7 +4,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-
 import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -21,7 +20,6 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -368,8 +366,7 @@ public class StartRun extends AppCompatActivity implements LocationListener {
             startLocation = currentLocation;
         }
         catch (Exception e){
-            Toast toast = Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG);
-            toast.show();
+            System.out.println(e.getMessage());
         }
 
         //this checks if we've reached our mile goal set by the user for this pair of Shoes. If we
