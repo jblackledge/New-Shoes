@@ -368,20 +368,6 @@ public class StartRun extends AppCompatActivity implements LocationListener {
         catch (Exception e){
             System.out.println(e.getMessage());
         }
-
-        //this checks if we've reached our mile goal set by the user for this pair of Shoes. If we
-        //have, we display a Toast that alerts the user that it's time for a new pair of shoes.
-        //toastTally only allows us to make the Toast once
-        //I can implement this better though
-        if( (totalMilesTraveled >= shoe.getDesiredDistanceInMiles()) && toastTally < 1)
-        {
-            Context context = getApplicationContext();
-            CharSequence toastText = "Time for a new pair of shoes!";
-            int duration = Toast.LENGTH_LONG;
-            Toast toast = Toast.makeText(context, toastText, duration);
-            toast.show();
-            ++toastTally;
-        }
     }
 
     /**
