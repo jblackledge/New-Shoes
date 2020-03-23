@@ -19,11 +19,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class StartRun extends AppCompatActivity implements LocationListener {
 
@@ -47,10 +47,6 @@ public class StartRun extends AppCompatActivity implements LocationListener {
 
     //Number of miles traveled during the current run
     private Double totalMilesTraveled;
-
-    private TextView startLocationText;
-
-    private TextView currentLocationText;
 
     //TextView variable that updates the number of miles ran, with the totalMilesTraveled value
     private TextView trackedMiles;
@@ -99,7 +95,8 @@ public class StartRun extends AppCompatActivity implements LocationListener {
         //This TextVies displays the desired distance in miles at the far right end of the progress
         //bar
         TextView progressBarDistanceText = findViewById(R.id.progress_bar_end_text);
-        progressBarDistanceText.setText(shoe.getDesiredDistanceInMiles().toString());
+        progressBarDistanceText.setText(String.format(Locale.getDefault(),
+                shoe.getDesiredDistanceInMiles().toString()));
 
         //checks if the user has already give the app permission to access location
         checkLocationPermission();
@@ -178,7 +175,7 @@ public class StartRun extends AppCompatActivity implements LocationListener {
 
         currentLocation = locationManager.getLastKnownLocation(provider);
 
-        trackedMiles.setText(String.format("%.2f", totalMilesTraveled));
+        trackedMiles.setText(String.format(Locale.getDefault(),"%.2f", totalMilesTraveled));
 
         //creates a location listener to update onLocationChanged method upon meeting the specified
         //time and/or distance criteria
@@ -360,20 +357,20 @@ public class StartRun extends AppCompatActivity implements LocationListener {
             }
 
             totalMilesTraveled += milesBetween;
-            trackedMiles.setText(String.format("%.2f", totalMilesTraveled));
+            trackedMiles.setText(String.format(Locale.getDefault(),"%.2f", totalMilesTraveled));
             shoe.setMeterCount(metersBetweenDouble);
+
+            updateProgressBar(shoe.getMeterCount().intValue());        //Changed progress bar to meters instead of miles
+            //set the value of startLocation to currentLocation. This allows us to only count recent
+            //changes, otherwise, if startLocation stays the same as the beginning, we are adding the
+            //incorrect amount of miles, because we are always checking the distance between
+            //start and current location
+            startLocation = currentLocation;
         }
         catch (Exception e){
             Toast toast = Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG);
             toast.show();
         }
-
-        updateProgressBar(shoe.getMeterCount().intValue());        //Changed progress bar to meters instead of miles
-        //set the value of startLocation to currentLocation. This allows us to only count recent
-        //changes, otherwise, if startLocation stays the same as the beginning, we are adding the
-        //incorrect amount of miles, because we are always checking the distance between
-        //start and current location
-        startLocation = currentLocation;
 
         //this checks if we've reached our mile goal set by the user for this pair of Shoes. If we
         //have, we display a Toast that alerts the user that it's time for a new pair of shoes.
