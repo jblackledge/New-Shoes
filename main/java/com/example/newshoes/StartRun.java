@@ -51,10 +51,6 @@ public class StartRun extends AppCompatActivity implements LocationListener {
 
     private Shoe shoe;
 
-    //Used to keep track of whether a toast has been made. Honestly, bool would be more efficient in
-    //this case since we only intend to display the toast once per run
-    private Integer toastTally;
-
     //Green progress bar that allows the user to visually see how far they've traveled so far in
     //the selected pair of shoes
     private ProgressBar progressBar;
@@ -71,7 +67,6 @@ public class StartRun extends AppCompatActivity implements LocationListener {
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         totalMilesTraveled = 0.0;
-        toastTally = 0;
 
         Intent intent = getIntent();
         //gets the Shoe object placed in the intent
