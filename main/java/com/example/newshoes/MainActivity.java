@@ -49,35 +49,6 @@ public class MainActivity extends AppCompatActivity implements Serializable {
             // for Activity#requestPermissions for more details.
             return;
         }
-
-        Button deleteShoeButton = findViewById(R.id.delete_shoe_button);
-        //Here we create a long click listener, upon a long click, we restore a previously deleted
-        //shoe and inform the user via Toast, that the she was restored successfully
-        deleteShoeButton.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View view) {
-                    if(!AddShoeActivity.getDeletedShoeStack().empty()) {
-                        AddShoeActivity.addBackToList();
-
-                        //calls method to save shoe list again
-                        saveSharedPrefAfterShoeReturnedFromDeletion();
-                        //updates list of Shoes
-                        showShoeList();
-
-                        Context context = getApplicationContext();
-                        CharSequence toastText = "Shoe restored from deletion";
-                        int duration = Toast.LENGTH_LONG;
-                        Toast toast = Toast.makeText(context, toastText, duration);
-                        toast.show();
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                }
-            });
-
         showShoeList();
     }
 
@@ -166,6 +137,35 @@ public class MainActivity extends AppCompatActivity implements Serializable {
             Toast toast = Toast.makeText(context, toastText, duration);
             toast.show();
         }
+
+        //Code for undoing a undoing an accidentally deleted Shoe
+        Button deleteShoeButton = findViewById(R.id.delete_shoe_button);
+        //Here we create a long click listener, upon a long click, we restore a previously deleted
+        //shoe and inform the user via Toast, that the she was restored successfully
+        deleteShoeButton.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                if(!AddShoeActivity.getDeletedShoeStack().empty()) {
+                    AddShoeActivity.addBackToList();
+
+                    //calls method to save shoe list again
+                    saveSharedPrefAfterShoeReturnedFromDeletion();
+                    //updates list of Shoes
+                    showShoeList();
+
+                    Context context = getApplicationContext();
+                    CharSequence toastText = "Shoe restored from deletion";
+                    int duration = Toast.LENGTH_LONG;
+                    Toast toast = Toast.makeText(context, toastText, duration);
+                    toast.show();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        });
     }
 
     /**
