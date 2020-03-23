@@ -1,7 +1,7 @@
 package com.example.newshoes;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.Locale;
 
 public class Shoe implements Serializable, Comparable<Shoe> {
     private String shoeName;
@@ -80,7 +80,8 @@ public class Shoe implements Serializable, Comparable<Shoe> {
     }
 
     public String toString() {
-        return String.format("%s - Current Mile Count: %.2f", this.shoeName, this.getMileCount());
+        return String.format(Locale.getDefault(), "%s - Current Mile Count: %.2f",
+                this.shoeName, this.getMileCount());
     }
 
     /**
