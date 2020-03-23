@@ -61,6 +61,8 @@ public class MainActivity extends AppCompatActivity implements Serializable {
 
                         //calls method to save shoe list again
                         saveSharedPrefAfterShoeReturnedFromDeletion();
+                        //updates list of Shoes
+                        showShoeList();
 
                         Context context = getApplicationContext();
                         CharSequence toastText = "Shoe restored from deletion";
