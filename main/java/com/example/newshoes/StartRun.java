@@ -59,6 +59,8 @@ public class StartRun extends AppCompatActivity implements LocationListener {
     //Pause Run button
     private boolean isPaused;
 
+    private Float previousMetersBetween;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +69,8 @@ public class StartRun extends AppCompatActivity implements LocationListener {
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         totalMilesTraveled = 0.0;
+
+        previousMetersBetween = -1.0f;
 
         Intent intent = getIntent();
         //gets the Shoe object placed in the intent
@@ -131,14 +135,14 @@ public class StartRun extends AppCompatActivity implements LocationListener {
         //assigns the start location with the current GPS location
         startLocation = locationManager.getLastKnownLocation(provider);
 
-        trackRun(view);
+        trackRun();
     }
 
     /**
      * Method that sets the currentLocation, and creates a lcationListener to check if the location
      * has changes
      */
-    public void trackRun(View view) {
+    public void trackRun() {
         totalMilesTraveled = 0.0;
         trackedMiles = findViewById(R.id.mile_count_text);
 
@@ -335,30 +339,40 @@ public class StartRun extends AppCompatActivity implements LocationListener {
         try{
             //calculate the meters between our currentLocation and our startLocation
             Float metersBetween = currentLocation.distanceTo(startLocation);
-            //convert Float value to a Double value
-            Double metersBetweenDouble = metersBetween.doubleValue();
-            //convert meters to miles
-            Double milesBetween = metersBetweenDouble * VALUE_OF_MILE_IN_METERS;
 
-            //if the milesBetween our current and start locations is greater than the value set by the
-            //LOCATION_CHANGED_LIMITATION constant, we continue on. Else we return and wait for another
-            //call to the method. This prevents us from falsely incrementing our totalMilesTraveled,
-            //when the GPS is "floating"
-            if(milesBetween < LOCATION_CHANGED_LIMITATION)
+            if(previousMetersBetween > metersBetween)
             {
-                return;
+                startLocation = currentLocation;
+                trackRun();
             }
+            else
+            {
+                //convert Float value to a Double value
+                Double metersBetweenDouble = metersBetween.doubleValue();
+                //convert meters to miles
+                Double milesBetween = metersBetweenDouble * VALUE_OF_MILE_IN_METERS;
 
-            totalMilesTraveled += milesBetween;
-            trackedMiles.setText(String.format(Locale.getDefault(),"%.2f", totalMilesTraveled));
-            shoe.setMeterCount(metersBetweenDouble);
+                //if the milesBetween our current and start locations is greater than the value set by the
+                //LOCATION_CHANGED_LIMITATION constant, we continue on. Else we return and wait for another
+                //call to the method. This prevents us from falsely incrementing our totalMilesTraveled,
+                //when the GPS is "floating"
+                if(milesBetween < LOCATION_CHANGED_LIMITATION)
+                {
+                    return;
+                }
 
-            updateProgressBar(shoe.getMeterCount().intValue());        //Changed progress bar to meters instead of miles
-            //set the value of startLocation to currentLocation. This allows us to only count recent
-            //changes, otherwise, if startLocation stays the same as the beginning, we are adding the
-            //incorrect amount of miles, because we are always checking the distance between
-            //start and current location
-            startLocation = currentLocation;
+                totalMilesTraveled = milesBetween;
+                trackedMiles.setText(String.format(Locale.getDefault(),"%.2f", totalMilesTraveled));
+                shoe.setMeterCount(metersBetweenDouble);
+
+                updateProgressBar(shoe.getMeterCount().intValue());        //Changed progress bar to meters instead of miles
+//                //set the value of startLocation to currentLocation. This allows us to only count recent
+//                //changes, otherwise, if startLocation stays the same as the beginning, we are adding the
+//                //incorrect amount of miles, because we are always checking the distance between
+//                //start and current location
+//                startLocation = currentLocation;
+                previousMetersBetween = metersBetween;
+            }
         }
         catch (Exception e){
             System.out.println(e.getMessage());
@@ -372,6 +386,9 @@ public class StartRun extends AppCompatActivity implements LocationListener {
     public void updateProgressBar(int progress) {
         progressBar = findViewById(R.id.run_progress_bar);
         progressBar.setProgress(progress);
+
+        TextView progressBarTes = findViewById(R.id.prgress_bar_test);
+        progressBarTes.setText(progress);
     }
 
     /**
