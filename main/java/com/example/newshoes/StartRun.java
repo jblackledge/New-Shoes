@@ -344,21 +344,19 @@ public class StartRun extends AppCompatActivity implements LocationListener {
             //LOCATION_CHANGED_LIMITATION constant, we continue on. Else we return and wait for another
             //call to the method. This prevents us from falsely incrementing our totalMilesTraveled,
             //when the GPS is "floating"
-            if(milesBetween < LOCATION_CHANGED_LIMITATION)
+            if(milesBetween > LOCATION_CHANGED_LIMITATION)
             {
-                return;
+                totalMilesTraveled += milesBetween;
+                trackedMiles.setText(String.format(Locale.getDefault(),"%.2f", totalMilesTraveled));
+                shoe.setMeterCount(metersBetweenDouble);
+
+                updateProgressBar(shoe.getMeterCount().intValue());        //Changed progress bar to meters instead of miles
+                //set the value of startLocation to currentLocation. This allows us to only count recent
+                //changes, otherwise, if startLocation stays the same as the beginning, we are adding the
+                //incorrect amount of miles, because we are always checking the distance between
+                //start and current location
+                startLocation = currentLocation;
             }
-
-            totalMilesTraveled += milesBetween;
-            trackedMiles.setText(String.format(Locale.getDefault(),"%.2f", totalMilesTraveled));
-            shoe.setMeterCount(metersBetweenDouble);
-
-            updateProgressBar(shoe.getMeterCount().intValue());        //Changed progress bar to meters instead of miles
-            //set the value of startLocation to currentLocation. This allows us to only count recent
-            //changes, otherwise, if startLocation stays the same as the beginning, we are adding the
-            //incorrect amount of miles, because we are always checking the distance between
-            //start and current location
-            startLocation = currentLocation;
         }
         catch (Exception e){
             System.out.println(e.getMessage());
