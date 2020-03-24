@@ -22,6 +22,17 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/prgress_bar_test"
+        app:layout_constraintTop_toBottomOf="@id/run_progress_bar"
+        app:layout_constraintBottom_toTopOf="@id/track_run_switch"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:text="Progress Bar Meters: "
+        android:textSize="22sp"
+        android:textColor="@color/titleColorTest"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/test_passed_shoe"
         app:layout_constraintTop_toBottomOf="@id/start_run_welcome_text"
         app:layout_constraintLeft_toRightOf="parent"
