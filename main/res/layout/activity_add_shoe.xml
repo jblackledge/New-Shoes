@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/backgroundColor"
+    android:background="@color/lightModeBackgroundColor"
     android:clickable="true"
     android:focusable="true"
     android:focusableInTouchMode="true"
@@ -18,7 +18,7 @@
         android:text="@string/add_new_shoe_text"
         android:textSize="52sp"
         android:textStyle="bold"
-        android:textColor="@color/titleColorTest"
+        android:textColor="@color/lightModeTextColor"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -31,7 +31,7 @@
         android:layout_marginTop="50dp"
         android:layout_marginStart="10dp"
         android:text="@string/enter_shoe_name"
-        android:textColor="@color/titleColorTest"
+        android:textColor="@color/lightModeTextColor"
         android:textSize="30sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/welcome_text" />
@@ -40,7 +40,7 @@
         android:id="@+id/shoe_name_text_field"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/titleColorTest"
+        android:textColor="@color/lightModeTextColor"
         android:textSize="25sp"
         android:width="400dp"
         android:hint="@string/ex_nike_reebok_adidas"
@@ -56,7 +56,7 @@
         android:layout_marginTop="50dp"
         android:layout_marginStart="10dp"
         android:text="@string/enter_desired_distance_text"
-        android:textColor="@color/titleColorTest"
+        android:textColor="@color/lightModeTextColor"
         android:textSize="30sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/shoe_name_text_field" />
@@ -65,7 +65,7 @@
         android:id="@+id/desired_distance_text_field"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/titleColorTest"
+        android:textColor="@color/lightModeTextColor"
         android:textSize="25sp"
         android:width="400dp"
         android:inputType="numberDecimal"
@@ -82,7 +82,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginTop="50dp"
-        android:background="@color/titleColorTest"
+        android:background="@color/lightModeTextColor"
         android:text="@string/add_shoe_button_text"
         android:onClick="addShoe"/>
 

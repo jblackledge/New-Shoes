@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#318CE7</color>
-    <color name="colorPrimaryDark">#318CE7</color>
-    <color name="colorAccent">#D81B60</color>
-    <color name="titleColor">#0CBFE9</color>
-    <color name="backgroundColor">#F0F8FF</color>
-    <color name="titleColorTest">#318CE7</color>
-    <color name="progressBarTest">#03c03c</color>
-    <color name="progressBarText">#000000</color>-->
+    <color name="colorLighModePrimary">#318CE7</color>
+    <color name="colorDarkModePrimary">#20568D</color>
+    <color name="tertiaryColorAccent">#D81B60</color>
+    <color name="secondaryColorAccent">#0CBFE9</color>
+    <color name="lightModeBackgroundColor">#F0F8FF</color>
+    <color name="lightModeTextColor">#318CE7</color>
+    <color name="progressBarFillColor">#03c03c</color>
+    <color name="progressBarText">#000000</color>
+    <color name="darkModeBackgroundColor">#20568D</color>
+    <color name="darkModeTextColor">#0CBFE9</color>-->
 </resources>

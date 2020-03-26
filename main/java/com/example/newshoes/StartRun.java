@@ -70,8 +70,6 @@ public class StartRun extends AppCompatActivity implements LocationListener {
 
         totalMilesTraveled = 0.0;
 
-        previousMetersBetween = -1.0f;
-
         Intent intent = getIntent();
         //gets the Shoe object placed in the intent
         shoe = (Shoe) intent.getSerializableExtra("Shoe");
@@ -99,10 +97,14 @@ public class StartRun extends AppCompatActivity implements LocationListener {
         checkLocationPermission();
     }
 
+    public void getStartLocation(View view) {
+        startLocation();
+    }
+
     /**
      * Method to get the location we are beginning our run at
      */
-    public void getStartLocation(View view) {
+    public void startLocation() {
         Button pauseRun = findViewById(R.id.pause_run_button);
         Button stopRun = findViewById(R.id.stop_run_button);
         Button startRun = findViewById(R.id.track_run_switch);
@@ -144,6 +146,7 @@ public class StartRun extends AppCompatActivity implements LocationListener {
      */
     public void trackRun() {
         totalMilesTraveled = 0.0;
+        previousMetersBetween = -1.0f;
         trackedMiles = findViewById(R.id.mile_count_text);
 
         Criteria criteria = new Criteria();
@@ -340,10 +343,10 @@ public class StartRun extends AppCompatActivity implements LocationListener {
             //calculate the meters between our currentLocation and our startLocation
             Float metersBetween = currentLocation.distanceTo(startLocation);
 
-            if(previousMetersBetween > metersBetween)
+            if(previousMetersBetween >= metersBetween)
             {
-                startLocation = currentLocation;
-                trackRun();
+                locationManager.removeUpdates(this);
+                startLocation();
             }
             else
             {
@@ -352,6 +355,7 @@ public class StartRun extends AppCompatActivity implements LocationListener {
                 //convert meters to miles
                 Double milesBetween = metersBetweenDouble * VALUE_OF_MILE_IN_METERS;
 
+                previousMetersBetween = metersBetween;
                 //if the milesBetween our current and start locations is greater than the value set by the
                 //LOCATION_CHANGED_LIMITATION constant, we continue on. Else we return and wait for another
                 //call to the method. This prevents us from falsely incrementing our totalMilesTraveled,
@@ -371,7 +375,6 @@ public class StartRun extends AppCompatActivity implements LocationListener {
 //                //incorrect amount of miles, because we are always checking the distance between
 //                //start and current location
 //                startLocation = currentLocation;
-                previousMetersBetween = metersBetween;
             }
         }
         catch (Exception e){
