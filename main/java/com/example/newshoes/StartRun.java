@@ -30,7 +30,7 @@ public class StartRun extends AppCompatActivity {
     //we increment the mile counter, and update the location. If it's less than this value, we do
     //nothing and keep listening. This allows us to prevent the mile count from "floating" and
     //incrementing upon a false GPS change when the location updates
-    private final double LOCATION_CHANGED_LIMITATION = .0085;      //TESTING NEW VAL. WAS .009
+    private final double LOCATION_CHANGED_LIMITATION = .0075;      //TESTING NEW VAL. WAS .009
 
     private final Integer METERS_IN_A_MILE = 1609;
 
