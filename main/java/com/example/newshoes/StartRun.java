@@ -30,9 +30,11 @@ public class StartRun extends AppCompatActivity implements LocationListener {
     //we increment the mile counter, and update the location. If it's less than this value, we do
     //nothing and keep listening. This allows us to prevent the mile count from "floating" and
     //incrementing upon a false GPS change when the location updates
-    private final double LOCATION_CHANGED_LIMITATION = .009;
+    private final double LOCATION_CHANGED_LIMITATION = .00975;      //TESTING NEW VAL. WAS .009
 
     private final Integer METERS_IN_A_MILE = 1609;
+
+    private final Double VALUE_OF_MILE_IN_METERS = 0.000621371;
 
     //the original location that we start at. This location is updated each time we increment the
     //mile count
@@ -314,7 +316,6 @@ public class StartRun extends AppCompatActivity implements LocationListener {
      */
     @Override
     public void onLocationChanged(Location location) {
-        final Double VALUE_OF_MILE_IN_METERS = 0.000621371;
         trackedMiles = findViewById(R.id.mile_count_text);
 
         Criteria criteria = new Criteria();
@@ -359,6 +360,7 @@ public class StartRun extends AppCompatActivity implements LocationListener {
             //when the GPS is "floating"
             if(milesBetween < LOCATION_CHANGED_LIMITATION)
             {
+                System.out.println("Limitation Checked: " + milesBetween); //Test to check what value to limit
                 return;
             }
 
