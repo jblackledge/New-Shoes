@@ -59,8 +59,6 @@ public class StartRun extends AppCompatActivity implements LocationListener {
     //Pause Run button
     private boolean isPaused;
 
-    private Float previousMetersBetween;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,14 +95,15 @@ public class StartRun extends AppCompatActivity implements LocationListener {
         checkLocationPermission();
     }
 
-    public void getStartLocation(View view) {
-        startLocation();
-    }
-
     /**
-     * Method to get the location we are beginning our run at
+     * Method to get the location we are beginning our run at and set a location listener to track
+     * for changes in the users location
      */
-    public void startLocation() {
+    public void getStartLocation(View view) {
+        totalMilesTraveled = 0.0;
+        trackedMiles = findViewById(R.id.mile_count_text);
+        trackedMiles.setText(String.format(Locale.getDefault(),"%.2f", totalMilesTraveled));
+
         Button pauseRun = findViewById(R.id.pause_run_button);
         Button stopRun = findViewById(R.id.stop_run_button);
         Button startRun = findViewById(R.id.track_run_switch);
@@ -136,51 +135,58 @@ public class StartRun extends AppCompatActivity implements LocationListener {
         }
         //assigns the start location with the current GPS location
         startLocation = locationManager.getLastKnownLocation(provider);
+        //creates a location listener to update onLocationChanged method upon meeting the specified
+        //time and/or distance criteria
+        locationManager.requestLocationUpdates(provider, 1000, 2, this);
 
-        trackRun();
+//        trackRun(view);
     }
 
     /**
      * Method that sets the currentLocation, and creates a lcationListener to check if the location
      * has changes
+     *
+     * This method was unnecessary. We don't need to set currentLocation until the location listener
+     * is called.
+     * Placed necessary code from this method into getStartLocation()
+     * method
      */
-    public void trackRun() {
-        totalMilesTraveled = 0.0;
-        previousMetersBetween = -1.0f;
-        trackedMiles = findViewById(R.id.mile_count_text);
-
-        Criteria criteria = new Criteria();
-        criteria.setAccuracy(Criteria.ACCURACY_FINE);
-
-        LocationManager locationManager =
-                (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-
-        //if we dont't have permission from the user, we're done here
-        if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED &&
-                checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) !=
-                        PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    Activity#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for Activity#requestPermissions for more details.
-            trackedMiles.setText("Lol nope");
-            return;
-        }
-
-        String provider = locationManager.getBestProvider(criteria, true);
-
-        currentLocation = locationManager.getLastKnownLocation(provider);
-
-        trackedMiles.setText(String.format(Locale.getDefault(),"%.2f", totalMilesTraveled));
-
-        //creates a location listener to update onLocationChanged method upon meeting the specified
-        //time and/or distance criteria
-        locationManager.requestLocationUpdates(provider, 1000, 2, this);
-    }
+//    public void trackRun(View view) {
+////        totalMilesTraveled = 0.0;
+////        trackedMiles = findViewById(R.id.mile_count_text);
+//
+//        Criteria criteria = new Criteria();
+//        criteria.setAccuracy(Criteria.ACCURACY_FINE);
+//
+//        LocationManager locationManager =
+//                (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+//
+//        //if we dont't have permission from the user, we're done here
+//        if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION)
+//                != PackageManager.PERMISSION_GRANTED &&
+//                checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) !=
+//                        PackageManager.PERMISSION_GRANTED) {
+//            // TODO: Consider calling
+//            //    Activity#requestPermissions
+//            // here to request the missing permissions, and then overriding
+//            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+//            //                                          int[] grantResults)
+//            // to handle the case where the user grants the permission. See the documentation
+//            // for Activity#requestPermissions for more details.
+//            trackedMiles.setText("Lol nope");
+//            return;
+//        }
+//
+//        String provider = locationManager.getBestProvider(criteria, true);
+//
+//        currentLocation = locationManager.getLastKnownLocation(provider);
+//
+////        trackedMiles.setText(String.format(Locale.getDefault(),"%.2f", totalMilesTraveled));
+//
+////        //creates a location listener to update onLocationChanged method upon meeting the specified
+////        //time and/or distance criteria
+////        locationManager.requestLocationUpdates(provider, 1000, 2, this);
+//    }
 
     //Method to add miles to the current Shoe object whenever the End Run button is pressed
     public void addMilesToShoe(View view) {
@@ -342,40 +348,30 @@ public class StartRun extends AppCompatActivity implements LocationListener {
         try{
             //calculate the meters between our currentLocation and our startLocation
             Float metersBetween = currentLocation.distanceTo(startLocation);
+            //convert Float value to a Double value
+            Double metersBetweenDouble = metersBetween.doubleValue();
+            //convert meters to miles
+            Double milesBetween = metersBetweenDouble * VALUE_OF_MILE_IN_METERS;
 
-            if(previousMetersBetween >= metersBetween)
+            //if the milesBetween our current and start locations is greater than the value set by the
+            //LOCATION_CHANGED_LIMITATION constant, we continue on. Else we return and wait for another
+            //call to the method. This prevents us from falsely incrementing our totalMilesTraveled,
+            //when the GPS is "floating"
+            if(milesBetween < LOCATION_CHANGED_LIMITATION)
             {
-                locationManager.removeUpdates(this);
-                startLocation();
+                return;
             }
-            else
-            {
-                //convert Float value to a Double value
-                Double metersBetweenDouble = metersBetween.doubleValue();
-                //convert meters to miles
-                Double milesBetween = metersBetweenDouble * VALUE_OF_MILE_IN_METERS;
 
-                previousMetersBetween = metersBetween;
-                //if the milesBetween our current and start locations is greater than the value set by the
-                //LOCATION_CHANGED_LIMITATION constant, we continue on. Else we return and wait for another
-                //call to the method. This prevents us from falsely incrementing our totalMilesTraveled,
-                //when the GPS is "floating"
-                if(milesBetween < LOCATION_CHANGED_LIMITATION)
-                {
-                    return;
-                }
+            totalMilesTraveled += milesBetween;
+            trackedMiles.setText(String.format(Locale.getDefault(),"%.2f", totalMilesTraveled));
+            shoe.setMeterCount(metersBetweenDouble);
 
-                totalMilesTraveled = milesBetween;
-                trackedMiles.setText(String.format(Locale.getDefault(),"%.2f", totalMilesTraveled));
-                shoe.setMeterCount(metersBetweenDouble);
-
-                updateProgressBar(shoe.getMeterCount().intValue());        //Changed progress bar to meters instead of miles
-//                //set the value of startLocation to currentLocation. This allows us to only count recent
-//                //changes, otherwise, if startLocation stays the same as the beginning, we are adding the
-//                //incorrect amount of miles, because we are always checking the distance between
-//                //start and current location
-//                startLocation = currentLocation;
-            }
+            updateProgressBar(shoe.getMeterCount().intValue());        //Changed progress bar to meters instead of miles
+            //set the value of startLocation to currentLocation. This allows us to only count recent
+            //changes, otherwise, if startLocation stays the same as the beginning, we are adding the
+            //incorrect amount of miles, because we are always checking the distance between
+            //start and current location
+            startLocation = currentLocation;
         }
         catch (Exception e){
             System.out.println(e.getMessage());
@@ -389,9 +385,6 @@ public class StartRun extends AppCompatActivity implements LocationListener {
     public void updateProgressBar(int progress) {
         progressBar = findViewById(R.id.run_progress_bar);
         progressBar.setProgress(progress);
-
-        TextView progressBarTes = findViewById(R.id.prgress_bar_test);
-        progressBarTes.setText(progress);
     }
 
     /**

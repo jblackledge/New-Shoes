@@ -5,7 +5,6 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorLighModePrimary</item>
         <item name="colorPrimaryDark">@color/colorLighModePrimary</item>
-        <item name="colorAccent">@color/tertiaryColorAccent</item>
     </style>
 
 </resources>
