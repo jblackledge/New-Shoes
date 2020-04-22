@@ -45,7 +45,7 @@
         android:switchMinWidth="100dp"
         android:minHeight="52dp"
         android:checked="false"
-        android:onClick="getStartLocation"/>
+        android:onClick="trackRun"/>
 
     <TextView
         android:layout_width="wrap_content"

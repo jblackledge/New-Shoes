@@ -30,7 +30,7 @@ public class StartRun extends AppCompatActivity implements LocationListener {
     //we increment the mile counter, and update the location. If it's less than this value, we do
     //nothing and keep listening. This allows us to prevent the mile count from "floating" and
     //incrementing upon a false GPS change when the location updates
-    private final double LOCATION_CHANGED_LIMITATION = .00975;      //TESTING NEW VAL. WAS .009
+    private final double LOCATION_CHANGED_LIMITATION = .0085;      //TESTING NEW VAL. WAS .009
 
     private final Integer METERS_IN_A_MILE = 1609;
 
@@ -97,14 +97,19 @@ public class StartRun extends AppCompatActivity implements LocationListener {
         checkLocationPermission();
     }
 
+    public void trackRun(View view) {
+        totalMilesTraveled = 0.0;
+        trackedMiles = findViewById(R.id.mile_count_text);
+        trackedMiles.setText(String.format(Locale.getDefault(),"%.2f", totalMilesTraveled));
+        getStartLocation();
+    }
+
     /**
      * Method to get the location we are beginning our run at and set a location listener to track
      * for changes in the users location
      */
-    public void getStartLocation(View view) {
-        totalMilesTraveled = 0.0;
-        trackedMiles = findViewById(R.id.mile_count_text);
-        trackedMiles.setText(String.format(Locale.getDefault(),"%.2f", totalMilesTraveled));
+    public void getStartLocation() {
+        System.out.println("getStartLocation() called");
 
         Button pauseRun = findViewById(R.id.pause_run_button);
         Button stopRun = findViewById(R.id.stop_run_button);
@@ -360,10 +365,12 @@ public class StartRun extends AppCompatActivity implements LocationListener {
             //when the GPS is "floating"
             if(milesBetween < LOCATION_CHANGED_LIMITATION)
             {
-                System.out.println("Limitation Checked: " + milesBetween); //Test to check what value to limit
+                System.out.println("Limitation caught: " + milesBetween);
                 return;
+//                getStartLocation();
             }
 
+            System.out.println("Miles updated at: " + milesBetween);
             totalMilesTraveled += milesBetween;
             trackedMiles.setText(String.format(Locale.getDefault(),"%.2f", totalMilesTraveled));
             shoe.setMeterCount(metersBetweenDouble);
