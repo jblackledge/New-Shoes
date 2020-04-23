@@ -62,6 +62,8 @@ public class StartRun extends AppCompatActivity {
     //Pause Run button
     private boolean isPaused;
 
+    LocationManager locationManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,6 +104,7 @@ public class StartRun extends AppCompatActivity {
         totalMilesTraveled = 0.0;
         trackedMiles = findViewById(R.id.mile_count_text);
         trackedMiles.setText(String.format(Locale.getDefault(),"%.2f", totalMilesTraveled));
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         getStartLocation();
     }
 
@@ -120,8 +123,7 @@ public class StartRun extends AppCompatActivity {
         Criteria criteria = new Criteria();
         criteria.setAccuracy(Criteria.ACCURACY_FINE);
 
-        LocationManager locationManager =
-                (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
         String provider = locationManager.getBestProvider(criteria, true);
 
@@ -233,8 +235,7 @@ public class StartRun extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            String permissions[], int[] grantResults) {
-        LocationManager locationManager =
-                (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         String provider = locationManager.getBestProvider(new Criteria(), true);
         final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
 
@@ -274,8 +275,7 @@ public class StartRun extends AppCompatActivity {
             Criteria criteria = new Criteria();
             criteria.setAccuracy(Criteria.ACCURACY_FINE);
 
-            LocationManager locationManager =
-                    (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+            locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
             String provider = locationManager.getBestProvider(criteria, true);
 
@@ -369,8 +369,7 @@ public class StartRun extends AppCompatActivity {
             continueRun();
         }
         else {
-            LocationManager locationManager =
-                    (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+            locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
             locationManager.removeUpdates(myLocationListener);
 
@@ -389,10 +388,7 @@ public class StartRun extends AppCompatActivity {
     public void continueRun() {
         Criteria criteria = new Criteria();
         criteria.setAccuracy(Criteria.ACCURACY_FINE);
-
-        LocationManager locationManager =
-                (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         String provider = locationManager.getBestProvider(criteria, true);
 
         //if we dont't have permission from the user, we're done here
