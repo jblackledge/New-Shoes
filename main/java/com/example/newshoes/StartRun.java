@@ -30,7 +30,7 @@ public class StartRun extends AppCompatActivity {
     //we increment the mile counter, and update the location. If it's less than this value, we do
     //nothing and keep listening. This allows us to prevent the mile count from "floating" and
     //incrementing upon a false GPS change when the location updates
-    private final double LOCATION_CHANGED_LIMITATION = .0075;      //TESTING NEW VAL. WAS .009
+    private final double LOCATION_CHANGED_LIMITATION = .00975;
 
     private final Integer METERS_IN_A_MILE = 1609;
 
@@ -51,6 +51,7 @@ public class StartRun extends AppCompatActivity {
     //TextView variable that updates the number of miles ran, with the totalMilesTraveled value
     private TextView trackedMiles;
 
+    //Shoe
     private Shoe shoe;
 
     //Green progress bar that allows the user to visually see how far they've traveled so far in
@@ -109,8 +110,6 @@ public class StartRun extends AppCompatActivity {
      * for changes in the users location
      */
     public void getStartLocation() {
-        System.out.println("getStartLocation() called");
-
         Button pauseRun = findViewById(R.id.pause_run_button);
         Button stopRun = findViewById(R.id.stop_run_button);
         Button startRun = findViewById(R.id.track_run_switch);
@@ -145,55 +144,7 @@ public class StartRun extends AppCompatActivity {
         //creates a location listener to update onLocationChanged method upon meeting the specified
         //time and/or distance criteria
         locationManager.requestLocationUpdates(provider, 1000, 2, myLocationListener);
-
-//        trackRun(view);
     }
-
-    /**
-     * Method that sets the currentLocation, and creates a lcationListener to check if the location
-     * has changes
-     *
-     * This method was unnecessary. We don't need to set currentLocation until the location listener
-     * is called.
-     * Placed necessary code from this method into getStartLocation()
-     * method
-     */
-//    public void trackRun(View view) {
-////        totalMilesTraveled = 0.0;
-////        trackedMiles = findViewById(R.id.mile_count_text);
-//
-//        Criteria criteria = new Criteria();
-//        criteria.setAccuracy(Criteria.ACCURACY_FINE);
-//
-//        LocationManager locationManager =
-//                (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-//
-//        //if we dont't have permission from the user, we're done here
-//        if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION)
-//                != PackageManager.PERMISSION_GRANTED &&
-//                checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) !=
-//                        PackageManager.PERMISSION_GRANTED) {
-//            // TODO: Consider calling
-//            //    Activity#requestPermissions
-//            // here to request the missing permissions, and then overriding
-//            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-//            //                                          int[] grantResults)
-//            // to handle the case where the user grants the permission. See the documentation
-//            // for Activity#requestPermissions for more details.
-//            trackedMiles.setText("Lol nope");
-//            return;
-//        }
-//
-//        String provider = locationManager.getBestProvider(criteria, true);
-//
-//        currentLocation = locationManager.getLastKnownLocation(provider);
-//
-////        trackedMiles.setText(String.format(Locale.getDefault(),"%.2f", totalMilesTraveled));
-//
-////        //creates a location listener to update onLocationChanged method upon meeting the specified
-////        //time and/or distance criteria
-////        locationManager.requestLocationUpdates(provider, 1000, 2, this);
-//    }
 
     //Method to add miles to the current Shoe object whenever the End Run button is pressed
     public void addMilesToShoe(View view) {
@@ -267,8 +218,6 @@ public class StartRun extends AppCompatActivity {
                         })
                         .create()
                         .show();
-
-
             } else {
                 // No explanation needed, we can request the permission.
                 ActivityCompat.requestPermissions(this,
@@ -306,10 +255,8 @@ public class StartRun extends AppCompatActivity {
                     }
 
                 } else {
-
                     // permission denied, boo! Disable the
                     // functionality that depends on this permission.
-
                 }
                 return;
             }
@@ -366,17 +313,13 @@ public class StartRun extends AppCompatActivity {
                 //when the GPS is "floating"
                 if(milesBetween < LOCATION_CHANGED_LIMITATION)
                 {
-                    System.out.println("Limitation caught: " + milesBetween);
                     return;
-//                getStartLocation();
                 }
-
-                System.out.println("Miles updated at: " + milesBetween);
                 totalMilesTraveled += milesBetween;
                 trackedMiles.setText(String.format(Locale.getDefault(),"%.2f", totalMilesTraveled));
                 shoe.setMeterCount(metersBetweenDouble);
 
-                updateProgressBar(shoe.getMeterCount().intValue());        //Changed progress bar to meters instead of miles
+                updateProgressBar(shoe.getMeterCount().intValue());
                 //set the value of startLocation to currentLocation. This allows us to only count recent
                 //changes, otherwise, if startLocation stays the same as the beginning, we are adding the
                 //incorrect amount of miles, because we are always checking the distance between
@@ -464,7 +407,6 @@ public class StartRun extends AppCompatActivity {
             //                                          int[] grantResults)
             // to handle the case where the user grants the permission. See the documentation
             // for Activity#requestPermissions for more details.
-            trackedMiles.setText("Lol nope");
             return;
         }
 

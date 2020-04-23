@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
             AddShoeActivity.saveSharedPreferencesShoeList(this, AddShoeActivity.getShoeList());
             showShoeList();
 
-            Context context = getApplicationContext();
+            Context context = MainActivity.this;
             CharSequence toastText = "Shoe deleted. Mistake? Hold Delete button to undo";
             int duration = Toast.LENGTH_LONG;
             Toast toast = Toast.makeText(context, toastText, duration);
@@ -148,7 +148,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
                     //updates list of Shoes
                     showShoeList();
 
-                    Context context = getApplicationContext();
+                    Context context = MainActivity.this;
                     CharSequence toastText = "Shoe restored from deletion";
                     int duration = Toast.LENGTH_LONG;
                     Toast toast = Toast.makeText(context, toastText, duration);
