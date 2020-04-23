@@ -183,6 +183,12 @@ public class StartRun extends AppCompatActivity {
         }
         //save the list of Shoes to shared preferences
         AddShoeActivity.saveSharedPreferencesShoeList(this, myList);
+        //if the user paused the run before clicking the end run button, then updates were already
+        //removed from locationManager. Otherwise, we have to remove them here
+        if(!isPaused)
+        {
+            locationManager.removeUpdates(myLocationListener);
+        }
         //go back to the main activity
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
