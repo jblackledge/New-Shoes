@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -64,6 +65,7 @@ public class StartRun extends AppCompatActivity {
 
     LocationManager locationManager;
 
+    @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -317,6 +319,7 @@ public class StartRun extends AppCompatActivity {
                 //LOCATION_CHANGED_LIMITATION constant, we continue on. Else we return and wait for another
                 //call to the method. This prevents us from falsely incrementing our totalMilesTraveled,
                 //when the GPS is "floating"
+                System.out.println("milesBetween: "   + milesBetween);    //Troubleshooting TEST
                 if(milesBetween < LOCATION_CHANGED_LIMITATION)
                 {
                     return;

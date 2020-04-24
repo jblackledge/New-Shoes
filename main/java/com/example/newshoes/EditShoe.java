@@ -2,6 +2,7 @@ package com.example.newshoes;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -18,6 +19,7 @@ public class EditShoe extends AppCompatActivity {
 
     private final Integer METERS_IN_A_MILE = 1609;    //constant value for meters to mile conversion
 
+    @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

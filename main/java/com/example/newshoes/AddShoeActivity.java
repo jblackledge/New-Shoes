@@ -1,6 +1,8 @@
 package com.example.newshoes;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -26,6 +28,7 @@ public class AddShoeActivity extends AppCompatActivity {
 
     private static ArrayList<Shoe> shoeList = new ArrayList<>();
 
+    @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
