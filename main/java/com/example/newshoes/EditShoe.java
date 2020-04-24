@@ -120,9 +120,9 @@ public class EditShoe extends AppCompatActivity {
             //the user
             if(shoe.hasReachedGoal())
             {
-                if (shoe.getRunsSinceGoalReached() == 0) {
+                if (!shoe.getHasRanSinceGoalReached()) {
                     shoe.changeShoeName("👟" + shoe.getName());
-                    shoe.incrementRunsSinceGoalReached();
+                    shoe.setHasRanSinceGoalReached();
                 }
             }
         }
@@ -148,9 +148,9 @@ public class EditShoe extends AppCompatActivity {
             //the user
             if(shoe.hasReachedGoal())
             {
-                if (shoe.getRunsSinceGoalReached() == 0) {
+                if (!shoe.getHasRanSinceGoalReached()) {
                     shoe.changeShoeName("👟" + shoe.getName());
-                    shoe.incrementRunsSinceGoalReached();
+                    shoe.setHasRanSinceGoalReached();
                 }
             }
         }
@@ -175,9 +175,9 @@ public class EditShoe extends AppCompatActivity {
             //the user
             if(shoe.hasReachedGoal())
             {
-                if (shoe.getRunsSinceGoalReached() == 0) {
+                if (!shoe.getHasRanSinceGoalReached()) {
                     shoe.changeShoeName("👟" + shoe.getName());
-                    shoe.incrementRunsSinceGoalReached();
+                    shoe.setHasRanSinceGoalReached();
                 }
             }
         }
@@ -193,9 +193,9 @@ public class EditShoe extends AppCompatActivity {
             //the user
             if(shoe.hasReachedGoal())
             {
-                if (shoe.getRunsSinceGoalReached() == 0) {
+                if (!shoe.getHasRanSinceGoalReached()) {
                     shoe.changeShoeName("👟" + shoe.getName());
-                    shoe.incrementRunsSinceGoalReached();
+                    shoe.setHasRanSinceGoalReached();
                 }
             }
         }

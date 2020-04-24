@@ -170,9 +170,9 @@ public class StartRun extends AppCompatActivity {
                 //Places a shoe emoji next to the shoe name to indicate to the user that this Shoe
                 //has reached the goal set by the user
                 if(this.shoe.hasReachedGoal()) {
-                    if (this.shoe.getRunsSinceGoalReached() == 0) {
+                    if (!this.shoe.getHasRanSinceGoalReached()) {
                         this.shoe.changeShoeName("👟" + this.shoe.getName());
-                        this.shoe.incrementRunsSinceGoalReached();
+                        this.shoe.setHasRanSinceGoalReached();
                     }
                     Toast toast = Toast.makeText(this,
                             "Wow, you're fast! Time for a new pair of shoes!",
