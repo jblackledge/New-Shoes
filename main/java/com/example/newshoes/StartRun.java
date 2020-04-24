@@ -319,7 +319,6 @@ public class StartRun extends AppCompatActivity {
                 //LOCATION_CHANGED_LIMITATION constant, we continue on. Else we return and wait for another
                 //call to the method. This prevents us from falsely incrementing our totalMilesTraveled,
                 //when the GPS is "floating"
-                System.out.println("milesBetween: "   + milesBetween);    //Troubleshooting TEST
                 if(milesBetween < LOCATION_CHANGED_LIMITATION)
                 {
                     return;
@@ -335,9 +334,12 @@ public class StartRun extends AppCompatActivity {
                 //start and current location
                 startLocation = currentLocation;
             }
-            catch (Exception e){
-                System.out.println(e.getMessage());
-            }
+            //Ignoring exception because we only throw an exception when the location is assigned
+            //a NULL value and thus the distanceTo call assigns metersBetween to a NULL value which
+            //we then try to do conversions on, which then crashes the app. However, our
+            //location listener will always pick up another location, which means that we don't have
+            //to actually make any new calls in the catch block.
+            catch (Exception ignored){ }
         }
 
         @Override
