@@ -1,4 +1,4 @@
-package com.example.newshoes;
+package my.newshoes.app;
 
 import java.io.Serializable;
 import java.util.Locale;

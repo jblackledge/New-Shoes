@@ -1,4 +1,4 @@
-package com.example.newshoes;
+package my.newshoes.app;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
