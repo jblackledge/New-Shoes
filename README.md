@@ -1,5 +1,5 @@
 # New-Shoes
-New Shoes is an app for runners to track the amount of miles they run in a given pair of shoes, in order to be notified when it's time to buy a new pair. 
+New Shoes is an Android app for runners to track the amount of miles they run in a given pair of shoes, in order to be notified when it's time to buy a new pair. 
 
 
 ## Installation
