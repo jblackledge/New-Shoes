@@ -6,4 +6,4 @@ Simply search for and download the app from the Google Play store. New Shoes wor
 
 ## Usage
 ### Adding a Shoe
-Upon first opening the app, the user must add a new shoe to the list. To do this, simply click the "Add Shoe" button, which will take you to the add shoe screen. From there, you add the name of your shoes (Nike Air, Adiddas, etc.), and the amount of miles you wish to run in them before buying a new pair. After adding the required info, click "Add".
+Upon first opening the app, the user must add a new shoe to the list. To do this, simply click the "Add Shoe" button, which will take you to the add shoe screen. From there, you add the name of your shoes (Nike Air, Adiddas, etc.), and the amount of miles you wish to run in them before buying a new pair. After adding the required info, click "Add" to return to the main screen.
