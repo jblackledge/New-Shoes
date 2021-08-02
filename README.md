@@ -3,7 +3,7 @@ New Shoes is an Android app for runners to track the amount of miles they run in
 
 
 ## Installation
-Simply search for and download the app from the Google Play store. New Shoes works on Android x.xx and higher
+Simply search for and download the app from the Google Play store. New Shoes works on Android 6.0 and higher
 
 
 ## Usage
