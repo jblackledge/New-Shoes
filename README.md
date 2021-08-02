@@ -7,3 +7,6 @@ Simply search for and download the app from the Google Play store. New Shoes wor
 ## Usage
 ### Adding a Shoe
 Upon first opening the app, the user must add a new shoe to the list. To do this, simply click the "Add Shoe" button, which will take you to the add shoe screen. From there, you add the name of your shoes (Nike Air, Adiddas, etc.), and the amount of miles you wish to run in them before buying a new pair. After adding the required info, click "Add" to return to the main screen.
+
+### Selecting a Shoe
+To start a run, click the dropdown menu to display the alphabetically sorted list of shoes you have added. In this list you will see the names of your shoes and the amount of miles you've ran in them so far. If a shoe has reached or surpassed the amount of miles you entered, you will see a shoe emoji next to the name of the shoe to indicate that it is time to buy a new pair. Simply click the name of the shoes you plan to run in, so that it is selected in the drop box. Next, click the "Start Run" button to be taken to the run-tracking screen.
